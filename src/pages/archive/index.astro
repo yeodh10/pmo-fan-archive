@@ -162,26 +162,45 @@ const EMPTY_AT = 2;
 
 <script>
   import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
 
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // ── 입장 애니메이션 ──
+  // 275칸을 한 번에 stagger하면 다 뜨는 데 16초+ 걸려 화면이 까맣게 보임.
+  // 뷰포트에 들어오는 칸만 batch로 등장시켜 항상 즉시 채워지게 한다.
   if (reduced) {
     gsap.set('.grid-cell', { opacity: 1, y: 0 });
   } else {
-    gsap.to('.grid-cell', {
-      opacity: 1,
-      y: 0,
-      duration: 0.9,
-      stagger: 0.06,
-      ease: 'power3.out',
-      delay: 0.15,
+    ScrollTrigger.batch('.grid-cell', {
+      start: 'top 95%',
+      onEnter: (batch) =>
+        gsap.to(batch, {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          stagger: 0.05,
+          ease: 'power3.out',
+          overwrite: true,
+        }),
     });
+    // 안전장치: 스크롤트리거가 못 잡은 칸은 강제로 표시
+    ScrollTrigger.refresh();
+    setTimeout(() => {
+      document.querySelectorAll<HTMLElement>('.grid-cell').forEach((c) => {
+        if (!c.hidden && parseFloat(getComputedStyle(c).opacity) < 0.05) {
+          gsap.set(c, { opacity: 1, y: 0 });
+        }
+      });
+    }, 1200);
   }
 
   // ── 필터 ──
   const state = { year: 'all', category: 'all' };
   const cells = [...document.querySelectorAll<HTMLElement>('.grid-cell:not(.cell-empty)')];
+  const emptyCell = document.querySelector<HTMLElement>('.cell-empty');
   const noResult = document.querySelector<HTMLElement>('.no-result');
 
   function apply() {
@@ -193,15 +212,17 @@ const EMPTY_AT = 2;
       cell.hidden = !ok;
       if (ok) visible += 1;
     }
+    // "minus one" 빈 칸은 전체 보기에서만 — 필터 중엔 숨겨 혼동 방지
+    const filtering = state.year !== 'all' || state.category !== 'all';
+    if (emptyCell) emptyCell.hidden = filtering;
     if (noResult) noResult.hidden = visible > 0;
 
-    // 필터 직후 보이는 칸들을 한 번 더 떠오르게
+    // 필터 직후: 보이는 칸은 즉시 표시(까만 잔상 방지), 레이아웃 바뀌었으니 트리거 갱신
     if (!reduced) {
-      gsap.fromTo(
-        '.grid-cell:not([hidden])',
-        { opacity: 0, y: 16 },
-        { opacity: 1, y: 0, duration: 0.5, stagger: 0.04, ease: 'power2.out' }
-      );
+      const shown = [...cells, ...document.querySelectorAll<HTMLElement>('.cell-empty')]
+        .filter((c) => !c.hidden);
+      gsap.set(shown, { opacity: 1, y: 0 });
+      ScrollTrigger.refresh();
     }
   }
 
