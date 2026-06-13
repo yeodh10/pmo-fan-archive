@@ -110,37 +110,6 @@
     ]
   },
   {
-    "id": "2025_accessory_daisy-highball",
-    "code": "DK1rf4Jvp_q",
-    "year": 2025,
-    "date": "2025-06-13",
-    "category": "accessory",
-    "title": "PMO DAISY HIGHBALL",
-    "caption": "",
-    "images": [
-      "assets/archive/2025_accessory_daisy-highball.jpg",
-      "assets/archive/2025_accessory_daisy-highball_2.jpg",
-      "assets/archive/2025_accessory_daisy-highball_3.jpg",
-      "assets/archive/2025_accessory_daisy-highball_4.jpg"
-    ]
-  },
-  {
-    "id": "2025_accessory_red-highball",
-    "code": "DKGsojCPWII",
-    "year": 2025,
-    "date": "2025-05-26",
-    "category": "accessory",
-    "title": "PMO RED HIGHBALL",
-    "caption": "",
-    "images": [
-      "assets/archive/2025_accessory_red-highball.jpg",
-      "assets/archive/2025_accessory_red-highball_2.jpg",
-      "assets/archive/2025_accessory_red-highball_3.jpg",
-      "assets/archive/2025_accessory_red-highball_4.jpg",
-      "assets/archive/2025_accessory_red-highball_5.jpg"
-    ]
-  },
-  {
     "id": "2025_accessory_daisy-pendant",
     "year": 2025,
     "category": "accessory",
@@ -3590,20 +3559,6 @@
     ]
   },
   {
-    "id": "2019_accessory_x-miyagi-hidetaka",
-    "code": "BxRT0srlTrX",
-    "year": 2019,
-    "date": "2019-05-10",
-    "category": "accessory",
-    "title": "PMO® X MIYAGI HIDETAKA",
-    "caption": "",
-    "images": [
-      "assets/archive/2019_accessory_x-miyagi-hidetaka.jpg",
-      "assets/archive/2019_accessory_x-miyagi-hidetaka_2.jpg",
-      "assets/archive/2019_accessory_x-miyagi-hidetaka_3.jpg"
-    ]
-  },
-  {
     "id": "2019_cap_knit-cap-khaki",
     "year": 2019,
     "date": "2019-05-10",
@@ -3665,18 +3620,6 @@
       "assets/archive/2019_cap_reflective-logo-cap-red-white-black.jpg",
       "assets/archive/2019_cap_reflective-logo-cap-red-white-black_2.jpg",
       "assets/archive/2019_cap_reflective-logo-cap-red-white-black_3.jpg"
-    ]
-  },
-  {
-    "id": "2019_accessory_redbullkr-x",
-    "code": "BtaOMiFFG7D",
-    "year": 2019,
-    "date": "2019-02-03",
-    "category": "accessory",
-    "title": "@REDBULLKR X PEACEMINUSONE®️",
-    "caption": "",
-    "images": [
-      "assets/archive/2019_accessory_redbullkr-x.jpg"
     ]
   },
   {
@@ -4135,17 +4078,6 @@
     ]
   },
   {
-    "id": "2017_shirts_hoodie",
-    "year": 2017,
-    "date": "2017-01-20",
-    "category": "shirts",
-    "title": "PMO HOODIE",
-    "caption": "",
-    "images": [
-      "assets/archive/2017_shirts_hoodie.jpg"
-    ]
-  },
-  {
     "id": "2017_accessory_lip-pouch",
     "year": 2017,
     "category": "accessory",
@@ -4394,26 +4326,6 @@
     "caption": "심볼이 바늘이 되는 시계",
     "images": [
       "assets/archive/2016_accessory_wall-clock.jpg"
-    ]
-  },
-  {
-    "id": "2016_cap_distressed-symbol-cap",
-    "year": 2016,
-    "category": "cap",
-    "title": "DISTRESSED SYMBOL BALL CAP",
-    "caption": "심볼 패치를 거칠게 덧댄 볼캡",
-    "images": [
-      "assets/archive/2016_cap_distressed-symbol-cap.jpg"
-    ]
-  },
-  {
-    "id": "2016_shirts_colette-hoodie",
-    "year": 2016,
-    "category": "shirts",
-    "title": "WHITE HOODIE — COLETTE",
-    "caption": "파리 콜레트 입점 당시의 화이트 후디",
-    "images": [
-      "assets/archive/2016_shirts_colette-hoodie.jpg"
     ]
   },
   {

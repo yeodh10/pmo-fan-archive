@@ -1,0 +1,66 @@
+[
+  {
+    "year": "2015",
+    "title": "Beyond the Stage",
+    "kind": "exhibition",
+    "location": "서울시립미술관 (SeMA), 서울",
+    "note": "브랜드 이전, 전시가 먼저였다. 국내외 작가 다수 · 200여 점.",
+    "image": "assets/exhibitions/2015_beyond-the-stage.jpg"
+  },
+  {
+    "year": "2015",
+    "title": "Beyond the Stage — install view",
+    "kind": "exhibition",
+    "location": "서울시립미술관 (SeMA), 서울",
+    "note": "전시장에 걸린 대형 작업.",
+    "image": "assets/exhibitions/2015_beyond-the-stage-install.jpg"
+  },
+  {
+    "year": "2016",
+    "title": "+82 Party",
+    "kind": "party",
+    "location": "서울",
+    "note": "설립 전후를 잇는 +82 파티 시리즈.",
+    "image": "assets/exhibitions/2016_plus82-party-seoul.jpg"
+  },
+  {
+    "year": "2016",
+    "title": "Dover Street Market — launch",
+    "kind": "pop-up",
+    "location": "런던",
+    "note": "DSM 런던 입점. 첫 글로벌 리테일.",
+    "image": "assets/exhibitions/2016_dsm-london.jpg"
+  },
+  {
+    "year": "2017",
+    "title": "JOYCE Pacific Place",
+    "kind": "pop-up",
+    "location": "홍콩",
+    "note": "JOYCE 컬렉션 런칭.",
+    "image": "assets/exhibitions/2017_joyce-hong-kong.jpg"
+  },
+  {
+    "year": "2017",
+    "title": "+82 Party",
+    "kind": "party",
+    "location": "파리",
+    "note": "파리 패션위크 캡슐 프레젠테이션과 함께한 클로징 파티.",
+    "image": "assets/exhibitions/2017_plus82-party-paris.jpg"
+  },
+  {
+    "year": "2017",
+    "title": "Levi's ‘Icon’ Exhibition",
+    "kind": "exhibition",
+    "location": "로스앤젤레스",
+    "note": "리바이스 50주년 전시를 위해 커스텀한 트러커 재킷.",
+    "image": "assets/exhibitions/2017_levis-icon-la.jpg"
+  },
+  {
+    "year": "2024",
+    "title": "JOOPITER × Frieze Seoul",
+    "kind": "exhibition",
+    "location": "서울",
+    "note": "퍼렐의 JOOPITER가 연 G-DRAGON 아카이브 — 'Nothing but a G thang'.",
+    "image": "assets/exhibitions/2024_joopiter-frieze-seoul.jpg"
+  }
+]
