@@ -31,7 +31,6 @@ const images = product.images ?? [];
                 alt={`${product.title} — ${i + 1}/${images.length}`}
                 loading={i === 0 ? 'eager' : 'lazy'}
               />
-              <figcaption class="t-meta">{String(i + 1).padStart(2, '0')} / {String(images.length).padStart(2, '0')}</figcaption>
             </figure>
           ))
         : (
@@ -84,26 +83,18 @@ const images = product.images ?? [];
   .detail-gallery {
     display: flex;
     flex-direction: column;
-    gap: var(--space-3);
+    gap: 2px; /* 실제 피마원처럼 이미지가 거의 붙어서 쌓이게 */
   }
 
   .detail-frame {
     margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
   }
 
   .detail-frame img {
     width: 100%;
-    max-height: 80vh;
+    display: block;
     object-fit: contain;
     background: #101010;
-  }
-
-  .detail-frame figcaption {
-    color: var(--faint);
-    align-self: flex-end;
   }
 
   .detail-placeholder {
