@@ -49,8 +49,14 @@ const images = product.images ?? [];
     display: flex;
     flex-direction: column;
     gap: var(--space-3);
-    max-width: 64rem;
+    /* 와이드 화면에서 이미지가 작아 보이지 않게 넓게 */
+    max-width: min(94vw, 1500px);
     margin-inline: auto;
+  }
+
+  /* 헤더 텍스트는 가독성 위해 좁게 유지 */
+  .detail-head {
+    max-width: 48rem;
   }
 
   .back {
