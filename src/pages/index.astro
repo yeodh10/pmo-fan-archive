@@ -10,14 +10,8 @@ const hasChapterImg = fs.existsSync(
   new URL(`../../public/assets/chapters/${chapterImg}`, import.meta.url)
 );
 
-// 셀렉티드 아카이브: 최신 5개 + 의도적으로 비운 한 칸 (minus one)
-const selected = products.slice(0, 5);
-const EMPTY_AT = 2; // 그리드에서 비울 위치 (0-based)
-const cells = [
-  ...selected.slice(0, EMPTY_AT),
-  null,
-  ...selected.slice(EMPTY_AT),
-];
+// 셀렉티드 아카이브: 최신 6개
+const cells = products.slice(0, 6);
 ---
 
 <Base>
@@ -54,17 +48,11 @@ const cells = [
       <p class="t-meta">selected records</p>
     </header>
     <div class="selected-grid">
-      {cells.map((p) =>
-        p ? (
-          <div class="selected-cell">
-            <ArchiveCard product={p} />
-          </div>
-        ) : (
-          <div class="selected-cell cell-empty" aria-hidden="true">
-            <span class="t-serif-i">minus one</span>
-          </div>
-        )
-      )}
+      {cells.map((p) => (
+        <div class="selected-cell">
+          <ArchiveCard product={p} href={`/archive/${p.id}`} />
+        </div>
+      ))}
     </div>
     <a href="/archive" class="outro-link">
       <span class="t-meta">records</span>
@@ -202,19 +190,6 @@ const cells = [
   :global(html.js) .selected-cell {
     opacity: 0;
     transform: translateY(32px);
-  }
-
-  /* minus one — 의도적으로 비운 칸 */
-  .cell-empty {
-    aspect-ratio: 4 / 5;
-    border: 1px solid var(--line);
-    display: flex;
-    align-items: flex-end;
-    padding: var(--space-2);
-  }
-
-  .cell-empty span {
-    color: var(--faint);
   }
 
   @media (max-width: 720px) {
