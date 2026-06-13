@@ -160,12 +160,38 @@ const categories = CATEGORY_ORDER.filter((c) => products.some((p) => p.category 
 
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // ── 입장 애니메이션 ──
+  // ── 스크롤 위치 저장/복원 ──
+  // 제품 상세에 들어갔다 뒤로가기 하면 보던 자리에서 이어보게 한다.
+  // 카드가 aspect-ratio로 높이를 미리 잡아 레이아웃이 안정적 → 정확히 복원됨.
+  const SCROLL_KEY = 'pmo:archive-scroll';
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  const savedRaw = sessionStorage.getItem(SCROLL_KEY);
+  const savedY = savedRaw !== null ? parseInt(savedRaw, 10) : 0;
+
+  let ticking = false;
+  addEventListener('scroll', () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      sessionStorage.setItem(SCROLL_KEY, String(window.scrollY));
+      ticking = false;
+    });
+  }, { passive: true });
+  addEventListener('pagehide', () => sessionStorage.setItem(SCROLL_KEY, String(window.scrollY)));
+
+  // ── 입장 애니메이션 / 복원 ──
   // 275칸을 한 번에 stagger하면 다 뜨는 데 16초+ 걸려 화면이 까맣게 보임.
-  // 뷰포트에 들어오는 칸만 batch로 등장시켜 항상 즉시 채워지게 한다.
   if (reduced) {
     gsap.set('.grid-cell', { opacity: 1, y: 0 });
+    if (savedY > 0) window.scrollTo({ top: savedY, behavior: 'instant' });
+  } else if (savedY > 0) {
+    // 돌아온 경우: 칸을 즉시 다 보이게 하고 보던 자리로 즉시 점프(검정 칸 없이)
+    gsap.set('.grid-cell', { opacity: 1, y: 0 });
+    ScrollTrigger.refresh();
+    window.scrollTo({ top: savedY, behavior: 'instant' });
+    requestAnimationFrame(() => window.scrollTo({ top: savedY, behavior: 'instant' })); // 레이아웃 확정 후 보정
   } else {
+    // 신규 방문: 뷰포트에 들어오는 칸만 batch로 등장
     ScrollTrigger.batch('.grid-cell', {
       start: 'top 95%',
       onEnter: (batch) =>
@@ -178,8 +204,8 @@ const categories = CATEGORY_ORDER.filter((c) => products.some((p) => p.category 
           overwrite: true,
         }),
     });
-    // 안전장치: 스크롤트리거가 못 잡은 칸은 강제로 표시
     ScrollTrigger.refresh();
+    // 안전장치: 스크롤트리거가 못 잡은 칸은 강제로 표시
     setTimeout(() => {
       document.querySelectorAll<HTMLElement>('.grid-cell').forEach((c) => {
         if (!c.hidden && parseFloat(getComputedStyle(c).opacity) < 0.05) {
