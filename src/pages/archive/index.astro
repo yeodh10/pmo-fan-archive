@@ -115,10 +115,19 @@ const EMPTY_AT = 2;
   }
 
   /* ── grid ── */
+  /* 화면 폭에 맞춰 칸 수 자동 조절 — 와이드에서 제품이 거대해지지 않게 */
   .archive-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: var(--space-2);
+  }
+
+  @media (min-width: 1100px) {
+    .archive-grid { grid-template-columns: repeat(5, 1fr); }
+  }
+
+  @media (min-width: 1600px) {
+    .archive-grid { grid-template-columns: repeat(6, 1fr); }
   }
 
   :global(html.js) .grid-cell {
@@ -152,6 +161,12 @@ const EMPTY_AT = 2;
   @media (max-width: 720px) {
     .archive-grid {
       grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 721px) and (max-width: 880px) {
+    .archive-grid {
+      grid-template-columns: repeat(3, 1fr);
     }
   }
 </style>
