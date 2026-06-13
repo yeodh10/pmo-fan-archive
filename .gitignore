@@ -1,0 +1,25 @@
+# dependencies
+node_modules/
+
+# build output
+dist/
+.astro/
+
+# 스크래핑 원본/중간 산출물 (재현 가능, 저장소엔 불필요)
+public/_raw/
+data/pmo_harvest.json
+data/pmo_ig_meta.json
+data/pmo_imgs_*.json
+data/catalog_draft.json
+data/catalog_skipped.json
+data/merge_report.json
+data/new_indices.json
+data/dl_chunks.json
+
+# 임시 파일
+*.txt
+!**/CHANGELOG.txt
+
+# OS
+Thumbs.db
+.DS_Store

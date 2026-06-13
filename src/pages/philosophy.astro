@@ -1,0 +1,177 @@
+---
+import Base from '../layouts/Base.astro';
+
+// 시 형식 한 페이지. 줄 단위로 스크롤 등장.
+const stanzas = [
+  {
+    word: 'PEACE',
+    line: '유토피아의 세계.',
+  },
+  {
+    word: 'MINUS',
+    line: '결핍된 현실.',
+  },
+  {
+    word: 'ONE',
+    line: '그 둘이 교차하는 한 점.',
+  },
+];
+
+const poem = [
+  ['데이지 꽃잎 하나가 비어 있다.', '8시 방향.'],
+  ['완전한 평화에서 하나를 뺀 자리 —', '그 빈 자리가 이름이 된다.'],
+  ['그리드의 비어 있는 한 칸,', '공지 없는 발매,', 'NO SIGNAL.'],
+  ['비어 있음은 결핍이 아니라', '이상과 현실 사이의 거리.'],
+  ['이 아카이브는', '그 거리를 기록한다.'],
+];
+---
+
+<Base title="Philosophy">
+  <div class="ph">
+    <header class="ph-head">
+      <p class="t-meta">philosophy</p>
+    </header>
+
+    {stanzas.map((s) => (
+      <section class="ph-word">
+        <h2 class="t-hero ph-word-big">{s.word}</h2>
+        <p class="t-serif-i ph-word-line">{s.line}</p>
+      </section>
+    ))}
+
+    <section class="ph-poem">
+      {poem.map((stanza) => (
+        <p class="ph-stanza">
+          {stanza.map((l) => (
+            <span class="ph-line">{l}</span>
+          ))}
+        </p>
+      ))}
+    </section>
+
+    <footer class="ph-outro">
+      <p class="t-meta">peace, minus one</p>
+    </footer>
+  </div>
+</Base>
+
+<style>
+  .ph {
+    padding: calc(var(--header-h) + var(--space-4)) var(--gutter) var(--space-5);
+    max-width: 56rem;
+    margin-inline: auto;
+  }
+
+  .ph-head {
+    min-height: 24vh;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  /* ── PEACE / MINUS / ONE ── */
+  .ph-word {
+    min-height: 72vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--space-2);
+  }
+
+  .ph-word-big {
+    font-weight: 500;
+  }
+
+  /* MINUS에는 브랜드 문법대로 취소선 */
+  .ph-word:nth-of-type(2) .ph-word-big {
+    text-decoration: line-through;
+    text-decoration-thickness: 0.06em;
+  }
+
+  .ph-word-line {
+    font-size: var(--text-lg);
+    color: var(--muted);
+    padding-left: 0.25rem;
+  }
+
+  /* ── 시 본문 ── */
+  .ph-poem {
+    padding-block: var(--space-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .ph-stanza {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .ph-line {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: clamp(1.25rem, 1.05rem + 1.2vw, 1.9rem);
+    line-height: 1.55;
+    color: var(--accent);
+  }
+
+  /* 행마다 살짝 들여쓰기를 어긋나게 — 호흡 */
+  .ph-line:nth-child(2) { padding-left: 1.5em; }
+  .ph-line:nth-child(3) { padding-left: 3em; }
+
+  .ph-outro {
+    min-height: 30vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  :global(html.js) .ph-head > *,
+  :global(html.js) .ph-word > *,
+  :global(html.js) .ph-line,
+  :global(html.js) .ph-outro > * {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+</style>
+
+<script is:inline>
+  document.documentElement.classList.add('js');
+</script>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const all = ['.ph-head > *', '.ph-word > *', '.ph-line', '.ph-outro > *'];
+
+  if (reduced) {
+    gsap.set(all, { opacity: 1, y: 0 });
+  } else {
+    gsap.to('.ph-head > *', {
+      opacity: 1, y: 0, duration: 1.0, ease: 'power3.out', delay: 0.2,
+    });
+
+    document.querySelectorAll('.ph-word').forEach((sec) => {
+      gsap.to(sec.querySelectorAll(':scope > *'), {
+        opacity: 1, y: 0, duration: 1.1, stagger: 0.18, ease: 'power3.out',
+        scrollTrigger: { trigger: sec, start: 'top 60%' },
+      });
+    });
+
+    document.querySelectorAll('.ph-stanza').forEach((st) => {
+      gsap.to(st.querySelectorAll('.ph-line'), {
+        opacity: 1, y: 0, duration: 1.0, stagger: 0.22, ease: 'power3.out',
+        scrollTrigger: { trigger: st, start: 'top 75%' },
+      });
+    });
+
+    gsap.to('.ph-outro > *', {
+      opacity: 1, y: 0, duration: 1.2, ease: 'power3.out',
+      scrollTrigger: { trigger: '.ph-outro', start: 'top 85%' },
+    });
+  }
+</script>

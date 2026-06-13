@@ -1,0 +1,160 @@
+/* ─────────────────────────────────────────────
+   PEACEMINUSONE fan archive — global foundation
+   다크 베이스 · 타이포그래피 중심 · 여백으로 말하기
+   ───────────────────────────────────────────── */
+
+:root {
+  /* palette */
+  --bg: #0c0c0c;
+  --fg: #e9e9e6;
+  --muted: #757571;
+  --faint: #3a3a37;
+  --line: #1c1c1b;
+  --accent: #d8d8d3;
+
+  /* type — sans 본문/구조, serif italic 포인트 */
+  --font-sans: 'Archivo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+
+  /* type scale (fluid) */
+  --text-xs: 0.6875rem;                              /* 11px — 캡션, 메타 */
+  --text-sm: 0.8125rem;                              /* 13px — 내비, 푸터 */
+  --text-base: clamp(0.9375rem, 0.9rem + 0.2vw, 1.0625rem);
+  --text-lg: clamp(1.25rem, 1.1rem + 0.8vw, 1.75rem);
+  --text-xl: clamp(2rem, 1.5rem + 2.5vw, 3.5rem);
+  --text-hero: clamp(2.75rem, 1.75rem + 6vw, 7.5rem);
+
+  /* spacing rhythm */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 2rem;
+  --space-4: 4rem;
+  --space-5: 8rem;
+  --space-6: 14rem;
+
+  --header-h: 64px;
+  --gutter: clamp(1.25rem, 4vw, 4rem);
+
+  /* motion — 느리고 확신 있게 */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-slow: 1.2s;
+  --dur-base: 0.7s;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.3s ease, opacity 0.3s ease;
+}
+
+a:hover {
+  color: var(--accent);
+}
+
+::selection {
+  background: var(--fg);
+  color: var(--bg);
+}
+
+/* ── typography utilities ───────────────────── */
+
+.t-hero {
+  font-size: var(--text-hero);
+  font-weight: 500;
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.t-xl {
+  font-size: var(--text-xl);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+.t-lg {
+  font-size: var(--text-lg);
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+.t-meta {
+  font-size: var(--text-xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.t-serif-i {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+/* ── layout utilities ───────────────────────── */
+
+.container {
+  width: 100%;
+  padding-inline: var(--gutter);
+  margin-inline: auto;
+  max-width: 1440px;
+}
+
+/* ── scroll reveal 기본값 (GSAP가 제어) ─────── */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+}
+
+/* 모바일: 2단 헤더 높이 보정 */
+@media (max-width: 600px) {
+  :root {
+    --header-h: 88px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,219 @@
+---
+import Base from '../../layouts/Base.astro';
+import ArchiveCard from '../../components/ArchiveCard.astro';
+import products from '../../../data/products.json';
+
+// 연도는 데이터에서 도출, 카테고리는 브랜드 분류 고정 순서
+const years = [...new Set(products.map((p) => p.year).filter(Boolean))].sort((a, b) => b - a);
+const CATEGORY_ORDER = ['outer', 'shirts', 'pants', 'shoes', 'cap', 'accessory'];
+const categories = CATEGORY_ORDER.filter((c) => products.some((p) => p.category === c));
+
+// minus one — 그리드에서 항상 비워두는 한 칸 (필터와 무관하게 고정)
+const EMPTY_AT = 2;
+---
+
+<Base title="Archive">
+  <section class="archive">
+    <header class="archive-head">
+      <p class="t-meta">archive — {products.length} records</p>
+      <h1 class="t-xl">기록</h1>
+    </header>
+
+    <div class="filters" role="group" aria-label="아카이브 필터">
+      <div class="filter-row">
+        <span class="t-meta filter-label">year</span>
+        <button class="filter-btn active" data-filter="year" data-value="all">all</button>
+        {years.map((y) => (
+          <button class="filter-btn" data-filter="year" data-value={y}>{y}</button>
+        ))}
+      </div>
+      <div class="filter-row">
+        <span class="t-meta filter-label">category</span>
+        <button class="filter-btn active" data-filter="category" data-value="all">all</button>
+        {categories.map((c) => (
+          <button class="filter-btn" data-filter="category" data-value={c}>{c}</button>
+        ))}
+      </div>
+    </div>
+
+    <div class="archive-grid">
+      {products.slice(0, EMPTY_AT).map((p) => (
+        <div class="grid-cell" data-year={p.year} data-category={p.category}>
+          <ArchiveCard product={p} href={`/archive/${p.id}`} />
+        </div>
+      ))}
+      <div class="grid-cell cell-empty" aria-hidden="true">
+        <span class="t-serif-i">minus one</span>
+      </div>
+      {products.slice(EMPTY_AT).map((p) => (
+        <div class="grid-cell" data-year={p.year} data-category={p.category}>
+          <ArchiveCard product={p} href={`/archive/${p.id}`} />
+        </div>
+      ))}
+    </div>
+
+    <p class="no-result t-serif-i" hidden>nothing here — like the missing petal</p>
+  </section>
+</Base>
+
+<style>
+  .archive {
+    padding: calc(var(--header-h) + var(--space-4)) var(--gutter) var(--space-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .archive-head {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  /* ── filters ── */
+  .filters {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding-block: var(--space-2);
+  }
+
+  .filter-row {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+  }
+
+  .filter-label {
+    min-width: 5.5rem;
+    color: var(--faint);
+  }
+
+  .filter-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 0.25rem 0;
+    transition: color 0.3s ease;
+  }
+
+  .filter-btn:hover {
+    color: var(--fg);
+  }
+
+  .filter-btn.active {
+    color: var(--fg);
+    border-bottom: 1px solid var(--fg);
+  }
+
+  /* ── grid ── */
+  .archive-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-2);
+  }
+
+  :global(html.js) .grid-cell {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+
+  .grid-cell[hidden] {
+    display: none;
+  }
+
+  .cell-empty {
+    aspect-ratio: 4 / 5;
+    border: 1px solid var(--line);
+    display: flex;
+    align-items: flex-end;
+    padding: var(--space-2);
+  }
+
+  .cell-empty span {
+    color: var(--faint);
+  }
+
+  .no-result {
+    color: var(--muted);
+    font-size: var(--text-lg);
+    padding-block: var(--space-4);
+    text-align: center;
+  }
+
+  @media (max-width: 720px) {
+    .archive-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>
+
+<script is:inline>
+  document.documentElement.classList.add('js');
+</script>
+
+<script>
+  import gsap from 'gsap';
+
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ── 입장 애니메이션 ──
+  if (reduced) {
+    gsap.set('.grid-cell', { opacity: 1, y: 0 });
+  } else {
+    gsap.to('.grid-cell', {
+      opacity: 1,
+      y: 0,
+      duration: 0.9,
+      stagger: 0.06,
+      ease: 'power3.out',
+      delay: 0.15,
+    });
+  }
+
+  // ── 필터 ──
+  const state = { year: 'all', category: 'all' };
+  const cells = [...document.querySelectorAll<HTMLElement>('.grid-cell:not(.cell-empty)')];
+  const noResult = document.querySelector<HTMLElement>('.no-result');
+
+  function apply() {
+    let visible = 0;
+    for (const cell of cells) {
+      const ok =
+        (state.year === 'all' || cell.dataset.year === state.year) &&
+        (state.category === 'all' || cell.dataset.category === state.category);
+      cell.hidden = !ok;
+      if (ok) visible += 1;
+    }
+    if (noResult) noResult.hidden = visible > 0;
+
+    // 필터 직후 보이는 칸들을 한 번 더 떠오르게
+    if (!reduced) {
+      gsap.fromTo(
+        '.grid-cell:not([hidden])',
+        { opacity: 0, y: 16 },
+        { opacity: 1, y: 0, duration: 0.5, stagger: 0.04, ease: 'power2.out' }
+      );
+    }
+  }
+
+  document.querySelectorAll<HTMLButtonElement>('.filter-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const { filter, value } = btn.dataset;
+      if (!filter || !value) return;
+      state[filter as 'year' | 'category'] = value;
+      document
+        .querySelectorAll(`.filter-btn[data-filter="${filter}"]`)
+        .forEach((b) => b.classList.toggle('active', b === btn));
+      apply();
+    });
+  });
+</script>

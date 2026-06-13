@@ -1,0 +1,321 @@
+---
+import fs from 'node:fs';
+import Base from '../layouts/Base.astro';
+import ArchiveCard from '../components/ArchiveCard.astro';
+import products from '../../data/products.json';
+
+// 챕터 이미지 폴백: 파일을 넣으면 자동 반영, 없으면 다크 플레이스홀더
+const chapterImg = '2015_exhibition.jpg';
+const hasChapterImg = fs.existsSync(
+  new URL(`../../public/assets/chapters/${chapterImg}`, import.meta.url)
+);
+
+// 셀렉티드 아카이브: 최신 5개 + 의도적으로 비운 한 칸 (minus one)
+const selected = products.slice(0, 5);
+const EMPTY_AT = 2; // 그리드에서 비울 위치 (0-based)
+const cells = [
+  ...selected.slice(0, EMPTY_AT),
+  null,
+  ...selected.slice(EMPTY_AT),
+];
+---
+
+<Base>
+  <!-- ── 히어로: 데이지 + 워드마크, 그 자체로 한 문장 ── -->
+  <section class="hero">
+    <h1 class="hero-statement">
+      <img src="/assets/brand/daisy.png" alt="" class="hero-daisy" />
+      <img src="/assets/brand/logo.png" alt="PEACEMINUSONE" class="hero-wordmark" />
+    </h1>
+    <p class="t-meta hero-meta">unofficial archive — est. 2016</p>
+    <p class="t-meta hero-scroll">scroll <span class="hero-scroll-arrow">↓</span></p>
+  </section>
+
+  <!-- ── 풀스크린 이미지 챕터: 2015 전시 ────── -->
+  <section class="chapter" aria-label="2015 exhibition chapter">
+    <div class="chapter-media">
+      {hasChapterImg
+        ? <img src={`/assets/chapters/${chapterImg}`} alt="PEACEMINUSONE: Beyond the Stage, 2015" class="chapter-img" />
+        : <div class="chapter-img chapter-placeholder" role="img" aria-label="2015 전시 이미지 자리"></div>}
+    </div>
+    <div class="chapter-caption">
+      <p class="t-meta chapter-year">2015 — before the brand</p>
+      <h2 class="t-xl chapter-title">Beyond the Stage</h2>
+      <p class="chapter-desc">
+        브랜드보다 전시가 먼저였다. 서울시립미술관,
+        <span class="t-serif-i">PEACEMINUSONE: Beyond the Stage.</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- ── 셀렉티드 아카이브 그리드 ──────────── -->
+  <section class="selected">
+    <header class="selected-head">
+      <p class="t-meta">selected records</p>
+    </header>
+    <div class="selected-grid">
+      {cells.map((p) =>
+        p ? (
+          <div class="selected-cell">
+            <ArchiveCard product={p} />
+          </div>
+        ) : (
+          <div class="selected-cell cell-empty" aria-hidden="true">
+            <span class="t-serif-i">minus one</span>
+          </div>
+        )
+      )}
+    </div>
+    <a href="/archive" class="outro-link">
+      <span class="t-meta">records</span>
+      <span class="t-lg">browse the full archive →</span>
+    </a>
+  </section>
+</Base>
+
+<style>
+  /* ── hero ── */
+  .hero {
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+    padding-inline: var(--gutter);
+    position: relative;
+  }
+
+  /* 데이지 + 워드마크 — 도도하게, 가운데에, 그게 전부 */
+  .hero-statement {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-3);
+    margin: 0;
+  }
+
+  .hero-daisy {
+    width: clamp(220px, 34vmin, 400px);
+    height: auto;
+    /* 이미지의 검정 배경을 페이지 배경에 녹임 */
+    mix-blend-mode: lighten;
+  }
+
+  .hero-wordmark {
+    height: clamp(16px, 2.2vw, 26px);
+    width: auto;
+  }
+
+  .hero-meta {
+    color: var(--faint);
+  }
+
+  /* JS가 있을 때만 초기 숨김 — GSAP가 등장을 제어 */
+  :global(html.js) .hero-daisy,
+  :global(html.js) .hero-wordmark,
+  :global(html.js) .hero-meta,
+  :global(html.js) .hero-scroll {
+    opacity: 0;
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: var(--space-3);
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .hero-scroll-arrow {
+    display: inline-block;
+    animation: drift 2.4s var(--ease-out) infinite;
+  }
+
+  @keyframes drift {
+    0%, 100% { transform: translateY(0); opacity: 1; }
+    50% { transform: translateY(5px); opacity: 0.4; }
+  }
+
+  /* ── chapter ── */
+  .chapter {
+    position: relative;
+    height: 100svh;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .chapter-media {
+    position: absolute;
+    inset: 0;
+  }
+
+  .chapter-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* 초기값 — 스크롤 진입 시 GSAP가 밝히고 줄임 */
+    filter: brightness(0.35);
+    transform: scale(1.12);
+    transform-origin: center;
+  }
+
+  .chapter-placeholder {
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 45%, #181816 0%, #0e0e0d 70%),
+      var(--bg);
+  }
+
+  .chapter-caption {
+    position: relative;
+    z-index: 1;
+    padding: 0 var(--gutter) var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    max-width: 40rem;
+  }
+
+  :global(html.js) .chapter-caption > * {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  .chapter-desc {
+    color: var(--muted);
+  }
+
+  /* ── selected archive grid ── */
+  .selected {
+    padding: var(--space-5) var(--gutter) var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .selected-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-2);
+  }
+
+  :global(html.js) .selected-cell {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+
+  /* minus one — 의도적으로 비운 칸 */
+  .cell-empty {
+    aspect-ratio: 4 / 5;
+    border: 1px solid var(--line);
+    display: flex;
+    align-items: flex-end;
+    padding: var(--space-2);
+  }
+
+  .cell-empty span {
+    color: var(--faint);
+  }
+
+  @media (max-width: 720px) {
+    .selected-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .outro-link {
+    margin-top: var(--space-3);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .outro-link:hover .t-lg {
+    color: var(--accent);
+  }
+</style>
+
+<script is:inline>
+  document.documentElement.classList.add('js');
+</script>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (reduced) {
+    // 모션 최소화: 전부 즉시 표시
+    gsap.set(
+      ['.hero-daisy', '.hero-wordmark', '.hero-meta', '.hero-scroll', '.chapter-caption > *', '.selected-cell'],
+      { opacity: 1, y: 0 }
+    );
+    gsap.set('.chapter-img', { filter: 'brightness(1)', scale: 1 });
+  } else {
+    // ── 히어로: 데이지가 천천히, 확신 있게 ──
+    const intro = gsap.timeline({ defaults: { ease: 'power2.out' } });
+    intro
+      .fromTo('.hero-daisy', { opacity: 0, scale: 1.08 }, { opacity: 1, scale: 1, duration: 1.8 }, 0.25)
+      .fromTo('.hero-wordmark', { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 1.0, ease: 'power3.out' }, '-=0.9')
+      .to('.hero-meta', { opacity: 1, duration: 0.8 }, '-=0.4')
+      .to('.hero-scroll', { opacity: 1, duration: 0.8 }, '-=0.3');
+
+    // ── 챕터: 스크롤 따라 서서히 밝아지며 살짝 축소(패럴랙스 느낌) ──
+    gsap.fromTo(
+      '.chapter-img',
+      { filter: 'brightness(0.35)', scale: 1.12 },
+      {
+        filter: 'brightness(1)',
+        scale: 1,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.chapter',
+          start: 'top 85%',
+          end: 'top 5%',
+          scrub: 0.6,
+        },
+      }
+    );
+
+    // 캡션은 챕터가 화면에 자리잡을 때 한 번 등장
+    gsap.to('.chapter-caption > *', {
+      opacity: 1,
+      y: 0,
+      duration: 1.0,
+      stagger: 0.12,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: '.chapter',
+        start: 'top 35%',
+      },
+    });
+
+    // 셀렉티드 그리드: 칸이 하나씩 떠오르며 등장
+    gsap.to('.selected-cell', {
+      opacity: 1,
+      y: 0,
+      duration: 1.0,
+      stagger: 0.1,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: '.selected-grid',
+        start: 'top 80%',
+      },
+    });
+
+    // 아카이브 입구도 같은 문법으로
+    gsap.from('.outro-link', {
+      opacity: 0,
+      y: 24,
+      duration: 0.9,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: '.outro-link',
+        start: 'top 90%',
+      },
+    });
+  }
+</script>

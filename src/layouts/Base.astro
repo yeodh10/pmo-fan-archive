@@ -1,0 +1,165 @@
+---
+import fs from 'node:fs';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+}
+
+const { title } = Astro.props;
+const pageTitle = title ? `${title} — PEACEMINUSONE archive` : 'PEACEMINUSONE — unofficial fan archive';
+
+// 로고 폴백: public/assets/brand/logo.png가 있으면 이미지, 없으면 텍스트 로고
+const hasLogo = fs.existsSync(new URL('../../public/assets/brand/logo.png', import.meta.url));
+
+const nav = [
+  { href: '/archive', label: 'Archive' },
+  { href: '/timeline', label: 'Timeline' },
+  { href: '/philosophy', label: 'Philosophy' },
+  { href: '/shop', label: 'Shop' },
+];
+
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+---
+
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>{pageTitle}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Cormorant+Garamond:ital,wght@1,500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="site-header">
+      <a href="/" class="logo" aria-label="PEACEMINUSONE archive home">
+        {hasLogo
+          ? <img src="/assets/brand/logo.png" alt="PEACEMINUSONE" class="logo-img" />
+          : <span class="logo-text">PEACEMINUSONE</span>}
+      </a>
+      <nav class="site-nav" aria-label="main">
+        {nav.map((item) => (
+          <a href={item.href} class:list={['nav-link', { active: currentPath.startsWith(item.href) }]}>
+            {item.label}
+          </a>
+        ))}
+      </nav>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <p class="t-meta">unofficial fan archive — not affiliated with peaceminusone</p>
+      <p class="t-meta footer-year">personal study / portfolio only</p>
+    </footer>
+  </body>
+</html>
+
+<style>
+  .site-header {
+    position: fixed;
+    inset: 0 0 auto 0;
+    z-index: 100;
+    height: var(--header-h);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-inline: var(--gutter);
+    /* 본문 위로 떠 있되 존재감은 낮게 */
+    background: linear-gradient(to bottom, rgba(12, 12, 12, 0.85), rgba(12, 12, 12, 0));
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+
+  .logo-img {
+    height: 22px;
+    width: auto;
+    /* 다크 배경 위 로고 — 원본이 어두우면 사용자 쪽에서 흰 버전 저장 */
+  }
+
+  .logo-text {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+  }
+
+  .site-nav {
+    display: flex;
+    gap: clamp(1rem, 3vw, 2.5rem);
+  }
+
+  .nav-link {
+    font-size: var(--text-xs);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .nav-link:hover,
+  .nav-link.active {
+    color: var(--fg);
+  }
+
+  /* 페이지 진입 페이드 — 다크 베이스라 전환이 한 호흡처럼 이어진다 */
+  main {
+    animation: page-enter 0.55s ease both;
+  }
+
+  @keyframes page-enter {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    main { animation: none; }
+  }
+
+  .site-footer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1) var(--space-3);
+    justify-content: space-between;
+    padding: var(--space-3) var(--gutter);
+    border-top: 1px solid var(--line);
+  }
+
+  .footer-year {
+    color: var(--faint);
+  }
+
+  /* 모바일: 로고/내비 2단 헤더 */
+  @media (max-width: 600px) {
+    .site-header {
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 0.6rem;
+      background: linear-gradient(to bottom, rgba(12, 12, 12, 0.92) 60%, rgba(12, 12, 12, 0));
+    }
+
+    .logo-img {
+      height: 16px;
+    }
+
+    .logo-text {
+      letter-spacing: 0.28em;
+      font-size: 0.6875rem;
+    }
+
+    .site-nav {
+      gap: 1rem;
+    }
+  }
+</style>

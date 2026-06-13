@@ -1,0 +1,112 @@
+---
+// 아카이브 카드 — 이미지가 없으면 다크 플레이스홀더로 폴백.
+// 사이트는 항상 "완성 상태"를 유지한다. href를 주면 상세로 연결.
+interface Props {
+  product: {
+    id: string;
+    year: number | null;
+    category: string;
+    title: string;
+    caption: string;
+    images: string[];
+  };
+  href?: string;
+}
+
+const { product, href } = Astro.props;
+const Tag = href ? 'a' : 'article';
+const cover = product.images?.[0];
+---
+
+<Tag class="card" href={href}>
+  <div class="card-media">
+    {cover
+      ? <img src={`/${cover}`} alt={product.title} loading="lazy" />
+      : (
+        <div class="card-placeholder" role="img" aria-label={`${product.title} — 이미지 준비 중`}>
+          <span class="t-meta">{product.year ?? '—'}</span>
+          <span class="t-serif-i card-placeholder-cat">{product.category}</span>
+        </div>
+      )}
+    <div class="card-overlay">
+      <p class="t-meta card-year">{product.year ?? '—'} — {product.category}</p>
+      <p class="card-title">{product.title}</p>
+      {product.images?.length > 1 && <p class="t-meta card-count">{product.images.length} images</p>}
+    </div>
+  </div>
+</Tag>
+
+<style>
+  .card-media {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background: #111110;
+  }
+
+  .card-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1.1s var(--ease-out), filter 0.6s ease;
+    filter: grayscale(0.15) brightness(0.92);
+  }
+
+  .card:hover .card-media img {
+    transform: scale(1.04);
+    filter: grayscale(0) brightness(1);
+  }
+
+  .card-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-1);
+    background: radial-gradient(ellipse 90% 70% at 50% 40%, #161614 0%, #0e0e0d 75%);
+    border: 1px solid var(--line);
+  }
+
+  .card-placeholder-cat {
+    color: var(--faint);
+    font-size: var(--text-lg);
+  }
+
+  .card-overlay {
+    position: absolute;
+    inset: auto 0 0 0;
+    padding: var(--space-2);
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    background: linear-gradient(to top, rgba(12, 12, 12, 0.92), rgba(12, 12, 12, 0));
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.45s ease, transform 0.45s var(--ease-out);
+  }
+
+  .card:hover .card-overlay {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .card-title {
+    font-size: var(--text-sm);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+
+  .card-count {
+    color: var(--muted);
+  }
+
+  /* 터치 환경: 호버가 없으니 오버레이 항상 표시 */
+  @media (hover: none) {
+    .card-overlay {
+      opacity: 1;
+      transform: none;
+    }
+  }
+</style>

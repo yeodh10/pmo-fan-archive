@@ -1,0 +1,156 @@
+---
+import Base from '../../layouts/Base.astro';
+import products from '../../../data/products.json';
+
+export function getStaticPaths() {
+  return products.map((p) => ({ params: { id: p.id }, props: { product: p } }));
+}
+
+const { product } = Astro.props;
+const images = product.images ?? [];
+---
+
+<Base title={product.title}>
+  <article class="detail">
+    <a href="/archive" class="t-meta back">← archive</a>
+
+    <header class="detail-head">
+      <p class="t-meta">{product.year ?? '—'} — {product.category}</p>
+      <h1 class="t-xl detail-title">{product.title}</h1>
+      {product.caption && <p class="t-serif-i detail-caption">{product.caption}</p>}
+      {images.length > 1 && <p class="t-meta detail-count">{images.length} images</p>}
+    </header>
+
+    <!-- 게시물의 캐러셀 전체 — 첫 장 뒤로 모든 컷이 이어진다 -->
+    <div class="detail-gallery">
+      {images.length > 0
+        ? images.map((img, i) => (
+            <figure class="detail-frame">
+              <img
+                src={`/${img}`}
+                alt={`${product.title} — ${i + 1}/${images.length}`}
+                loading={i === 0 ? 'eager' : 'lazy'}
+              />
+              <figcaption class="t-meta">{String(i + 1).padStart(2, '0')} / {String(images.length).padStart(2, '0')}</figcaption>
+            </figure>
+          ))
+        : (
+          <div class="detail-placeholder" role="img" aria-label={`${product.title} — 이미지 준비 중`}>
+            <span class="t-serif-i">{product.category}</span>
+          </div>
+        )}
+    </div>
+  </article>
+</Base>
+
+<style>
+  .detail {
+    min-height: 100svh;
+    padding: calc(var(--header-h) + var(--space-3)) var(--gutter) var(--space-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    max-width: 64rem;
+    margin-inline: auto;
+  }
+
+  .back {
+    color: var(--muted);
+  }
+
+  .back:hover {
+    color: var(--fg);
+  }
+
+  .detail-head {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .detail-title {
+    letter-spacing: 0.02em;
+  }
+
+  .detail-caption {
+    color: var(--muted);
+    font-size: var(--text-lg);
+  }
+
+  .detail-count {
+    color: var(--faint);
+  }
+
+  .detail-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .detail-frame {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .detail-frame img {
+    width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+    background: #101010;
+  }
+
+  .detail-frame figcaption {
+    color: var(--faint);
+    align-self: flex-end;
+  }
+
+  .detail-placeholder {
+    width: min(100%, 540px);
+    aspect-ratio: 4 / 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(ellipse 90% 70% at 50% 40%, #161614 0%, #0e0e0d 75%);
+    border: 1px solid var(--line);
+  }
+
+  .detail-placeholder span {
+    color: var(--faint);
+    font-size: var(--text-lg);
+  }
+
+  :global(html.js) .detail-head > *,
+  :global(html.js) .detail-frame {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+</style>
+
+<script is:inline>
+  document.documentElement.classList.add('js');
+</script>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (reduced) {
+    gsap.set(['.detail-head > *', '.detail-frame'], { opacity: 1, y: 0 });
+  } else {
+    gsap.to('.detail-head > *', {
+      opacity: 1, y: 0, duration: 0.9, stagger: 0.1, ease: 'power3.out', delay: 0.1,
+    });
+    document.querySelectorAll('.detail-frame').forEach((frame) => {
+      gsap.to(frame, {
+        opacity: 1, y: 0, duration: 0.9, ease: 'power3.out',
+        scrollTrigger: { trigger: frame, start: 'top 88%' },
+      });
+    });
+  }
+</script>
