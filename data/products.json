@@ -166,30 +166,15 @@
     ]
   },
   {
-    "id": "2024_shoes_nike-para-noise-af1-vv",
-    "year": 2024,
-    "date": "2024-09-10",
-    "category": "shoes",
-    "title": "NIKE PARA-NOISE AF1 VV",
-    "caption": "",
-    "images": [
-      "assets/archive/2024_shoes_nike-para-noise-af1-vv.jpg",
-      "assets/archive/2024_shoes_nike-para-noise-af1-vv_2.jpg",
-      "assets/archive/2024_shoes_nike-para-noise-af1-vv_3.jpg",
-      "assets/archive/2024_shoes_nike-para-noise-af1-vv_4.jpg",
-      "assets/archive/2024_shoes_nike-para-noise-af1-vv_5.jpg"
-    ]
-  },
-  {
-    "id": "2024_shoes_nike-af1-pink-swoosh",
+    "id": "2024_shoes_x-nike-af1-para-noise-3-0",
     "code": "C_DkD4_v8S8",
     "year": 2024,
     "date": "2024-08-24",
     "category": "shoes",
-    "title": "NIKE AF1 PINK SWOOSH",
+    "title": "PMO X NIKE AF1 PARA-NOISE 3.0",
     "caption": "",
     "images": [
-      "assets/archive/2024_shoes_nike-af1-pink-swoosh.jpg"
+      "assets/archive/2024_shoes_x-nike-af1-para-noise-3-0.jpg"
     ]
   },
   {
@@ -327,19 +312,20 @@
     ]
   },
   {
-    "id": "2023_shoes_kiiiondo",
+    "id": "2023_shoes_x-nike-kwondo-1-black-white",
+    "code": "CqZ08vBvODx",
     "year": 2023,
     "date": "2023-03-30",
     "category": "shoes",
-    "title": "°KIIIONDO",
+    "title": "PMO X NIKE KWONDO 1 (BLACK & WHITE)",
     "caption": "",
     "images": [
-      "assets/archive/2023_shoes_kiiiondo.jpg",
-      "assets/archive/2023_shoes_kiiiondo_2.jpg",
-      "assets/archive/2023_shoes_kiiiondo_3.jpg",
-      "assets/archive/2023_shoes_kiiiondo_4.jpg",
-      "assets/archive/2023_shoes_kiiiondo_5.jpg",
-      "assets/archive/2023_shoes_kiiiondo_6.jpg"
+      "assets/archive/2023_shoes_x-nike-kwondo-1-black-white.jpg",
+      "assets/archive/2023_shoes_x-nike-kwondo-1-black-white_2.jpg",
+      "assets/archive/2023_shoes_x-nike-kwondo-1-black-white_3.jpg",
+      "assets/archive/2023_shoes_x-nike-kwondo-1-black-white_4.jpg",
+      "assets/archive/2023_shoes_x-nike-kwondo-1-black-white_5.jpg",
+      "assets/archive/2023_shoes_x-nike-kwondo-1-black-white_6.jpg"
     ]
   },
   {
@@ -2245,19 +2231,6 @@
     ]
   },
   {
-    "id": "2020_shoes_nike-af1-daisy-white",
-    "code": "CHOirfdAtTh",
-    "year": 2020,
-    "date": "2020-11-05",
-    "category": "shoes",
-    "title": "NIKE AF1 DAISY WHITE",
-    "caption": "",
-    "images": [
-      "assets/archive/2020_shoes_nike-af1-daisy-white.jpg",
-      "assets/archive/2020_shoes_nike-af1-daisy-white_2.jpg"
-    ]
-  },
-  {
     "id": "2020_accessory_daisy-bracelet-2-yellow",
     "year": 2020,
     "date": "2020-10-23",
@@ -3967,19 +3940,6 @@
     ]
   },
   {
-    "id": "2017_accessory_book-of-answers-edition",
-    "code": "BXuPSDRhaUO",
-    "year": 2017,
-    "date": "2017-08-13",
-    "category": "accessory",
-    "title": "BOOK OF ANSWERS PMO EDITION",
-    "caption": "",
-    "images": [
-      "assets/archive/2017_accessory_book-of-answers-edition.jpg",
-      "assets/archive/2017_accessory_book-of-answers-edition_2.jpg"
-    ]
-  },
-  {
     "id": "2017_accessory_clear-pvc-backpack",
     "code": "BXlJ9kPB7P3",
     "year": 2017,
@@ -4617,52 +4577,6 @@
     ]
   },
   {
-    "id": "2016_shirts_sample-hoodie-white",
-    "code": "BGlkTeIrleH",
-    "year": 2016,
-    "date": "2016-06-13",
-    "category": "shirts",
-    "title": "SAMPLE HOODIE WHITE",
-    "caption": "",
-    "images": [
-      "assets/archive/2016_shirts_sample-hoodie-white.jpg"
-    ]
-  },
-  {
-    "id": "2016_cap_assc-x-82-cap",
-    "code": "BBFyvMMrldn",
-    "year": 2016,
-    "date": "2016-01-28",
-    "category": "cap",
-    "title": "ASSC X +82 CAP",
-    "caption": "",
-    "images": [
-      "assets/archive/2016_cap_assc-x-82-cap.jpg"
-    ]
-  },
-  {
-    "id": "2016_outer_x-champion-hoodie-white",
-    "code": "BA7TNT3rlb6",
-    "year": 2016,
-    "date": "2016-01-24",
-    "category": "outer",
-    "title": "PMO X CHAMPION HOODIE WHITE",
-    "caption": "",
-    "images": [
-      "assets/archive/2016_outer_x-champion-hoodie-white.jpg"
-    ]
-  },
-  {
-    "id": "2016_accessory_wall-clock",
-    "year": 2016,
-    "category": "accessory",
-    "title": "WALL CLOCK",
-    "caption": "심볼이 바늘이 되는 시계",
-    "images": [
-      "assets/archive/2016_accessory_wall-clock.jpg"
-    ]
-  },
-  {
     "id": "2016_shirts_logo-crewneck",
     "year": 2016,
     "category": "shirts",
@@ -4670,42 +4584,6 @@
     "caption": "심볼 자수 스웻셔츠",
     "images": [
       "assets/archive/2016_shirts_logo-crewneck.jpg"
-    ]
-  },
-  {
-    "id": "2015_shoes_glitter-derby-shoes-black",
-    "code": "7asRrUrlfj",
-    "year": 2015,
-    "date": "2015-09-09",
-    "category": "shoes",
-    "title": "GLITTER DERBY SHOES BLACK",
-    "caption": "",
-    "images": [
-      "assets/archive/2015_shoes_glitter-derby-shoes-black.jpg"
-    ]
-  },
-  {
-    "id": "2015_shoes_glitter-derby-shoes-multicolor",
-    "code": "7asYMVrlfw",
-    "year": 2015,
-    "date": "2015-09-09",
-    "category": "shoes",
-    "title": "GLITTER DERBY SHOES MULTICOLOR",
-    "caption": "",
-    "images": [
-      "assets/archive/2015_shoes_glitter-derby-shoes-multicolor.jpg"
-    ]
-  },
-  {
-    "id": "2015_shoes_glitter-slip-on-loafers",
-    "code": "7asFpxrlfE",
-    "year": 2015,
-    "date": "2015-09-09",
-    "category": "shoes",
-    "title": "GLITTER SLIP-ON LOAFERS",
-    "caption": "",
-    "images": [
-      "assets/archive/2015_shoes_glitter-slip-on-loafers.jpg"
     ]
   }
 ]
