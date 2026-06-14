@@ -23,3 +23,6 @@ data/dl_chunks.json
 # OS
 Thumbs.db
 .DS_Store
+data/keep_list.json
+data/vision_workflow.js
+data/vision_input.json
