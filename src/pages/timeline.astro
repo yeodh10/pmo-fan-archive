@@ -10,6 +10,7 @@ const entries = timeline.map((t) => ({
     ? fs.existsSync(new URL(`../../public/${t.image}`, import.meta.url))
     : false,
 }));
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
 <Base title="Timeline">
@@ -27,7 +28,7 @@ const entries = timeline.map((t) => ({
         <p class="tl-year" aria-hidden="true">{t.year}</p>
         <div class="tl-media">
           {t.hasImage
-            ? <img src={`/${t.image}`} alt={`${t.year} — ${t.title}`} loading="lazy" />
+            ? <img src={`${base}/${t.image}`} alt={`${t.year} — ${t.title}`} loading="lazy" />
             : <div class="tl-placeholder" role="img" aria-label={`${t.title} — 이미지 준비 중`}></div>}
         </div>
         <div class="tl-text">
@@ -40,7 +41,7 @@ const entries = timeline.map((t) => ({
 
     <footer class="tl-outro">
       <p class="t-serif-i">the record continues, minus one.</p>
-      <a href="/archive" class="t-meta tl-outro-link">browse the archive →</a>
+      <a href={`${base}/archive`} class="t-meta tl-outro-link">browse the archive →</a>
     </footer>
   </div>
 </Base>

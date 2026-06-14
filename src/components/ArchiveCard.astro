@@ -16,12 +16,13 @@ interface Props {
 const { product, href } = Astro.props;
 const Tag = href ? 'a' : 'article';
 const cover = product.images?.[0];
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
 <Tag class="card" href={href}>
   <div class="card-media">
     {cover
-      ? <img src={`/${cover}`} alt={product.title} loading="lazy" />
+      ? <img src={`${base}/${cover}`} alt={product.title} loading="lazy" />
       : (
         <div class="card-placeholder" role="img" aria-label={`${product.title} — 이미지 준비 중`}>
           <span class="t-meta">{product.year ?? '—'}</span>

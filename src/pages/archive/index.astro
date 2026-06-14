@@ -7,6 +7,7 @@ import products from '../../../data/products.json';
 const years = [...new Set(products.map((p) => p.year).filter(Boolean))].sort((a, b) => b - a);
 const CATEGORY_ORDER = ['outer', 'shirts', 'pants', 'shoes', 'cap', 'accessory'];
 const categories = CATEGORY_ORDER.filter((c) => products.some((p) => p.category === c));
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
 <Base title="Archive">
@@ -36,7 +37,7 @@ const categories = CATEGORY_ORDER.filter((c) => products.some((p) => p.category 
     <div class="archive-grid">
       {products.map((p) => (
         <div class="grid-cell" data-year={p.year} data-category={p.category}>
-          <ArchiveCard product={p} href={`/archive/${p.id}`} />
+          <ArchiveCard product={p} href={`${base}/archive/${p.id}`} />
         </div>
       ))}
     </div>

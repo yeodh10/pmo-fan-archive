@@ -12,12 +12,15 @@ const pageTitle = title ? `${title} — PEACEMINUSONE archive` : 'PEACEMINUSONE 
 // 로고 폴백: public/assets/brand/logo.png가 있으면 이미지, 없으면 텍스트 로고
 const hasLogo = fs.existsSync(new URL('../../public/assets/brand/logo.png', import.meta.url));
 
+const base = import.meta.env.BASE_URL; // "/pmo-fan-archive/"
+const baseNoSlash = base.replace(/\/$/, '');
+
 const nav = [
-  { href: '/archive', label: 'Archive' },
-  { href: '/exhibition', label: 'Exhibition' },
-  { href: '/timeline', label: 'Timeline' },
-  { href: '/philosophy', label: 'Philosophy' },
-  { href: '/shop', label: 'Shop' },
+  { href: `${baseNoSlash}/archive`, label: 'Archive' },
+  { href: `${baseNoSlash}/exhibition`, label: 'Exhibition' },
+  { href: `${baseNoSlash}/timeline`, label: 'Timeline' },
+  { href: `${baseNoSlash}/philosophy`, label: 'Philosophy' },
+  { href: `${baseNoSlash}/shop`, label: 'Shop' },
 ];
 
 const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
@@ -39,9 +42,9 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
   </head>
   <body>
     <header class="site-header">
-      <a href="/" class="logo" aria-label="PEACEMINUSONE archive home">
+      <a href={base} class="logo" aria-label="PEACEMINUSONE archive home">
         {hasLogo
-          ? <img src="/assets/brand/logo.png" alt="PEACEMINUSONE" class="logo-img" />
+          ? <img src={`${baseNoSlash}/assets/brand/logo.png`} alt="PEACEMINUSONE" class="logo-img" />
           : <span class="logo-text">PEACEMINUSONE</span>}
       </a>
       <nav class="site-nav" aria-label="main">

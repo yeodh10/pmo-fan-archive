@@ -12,14 +12,16 @@ const hasChapterImg = fs.existsSync(
 
 // 셀렉티드 아카이브: 최신 6개
 const cells = products.slice(0, 6);
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
 <Base>
   <!-- ── 히어로: 데이지 + 워드마크, 그 자체로 한 문장 ── -->
   <section class="hero">
     <h1 class="hero-statement">
-      <img src="/assets/brand/daisy.png" alt="" class="hero-daisy" />
-      <img src="/assets/brand/logo.png" alt="PEACEMINUSONE" class="hero-wordmark" />
+      <img src={`${base}/assets/brand/daisy.png`} alt="" class="hero-daisy" />
+      <img src={`${base}/assets/brand/logo.png`} alt="PEACEMINUSONE" class="hero-wordmark" />
     </h1>
     <p class="t-meta hero-meta">unofficial archive — est. 2016</p>
     <p class="t-meta hero-scroll">scroll <span class="hero-scroll-arrow">↓</span></p>
@@ -29,7 +31,7 @@ const cells = products.slice(0, 6);
   <section class="chapter" aria-label="2015 exhibition chapter">
     <div class="chapter-media">
       {hasChapterImg
-        ? <img src={`/assets/chapters/${chapterImg}`} alt="PEACEMINUSONE: Beyond the Stage, 2015" class="chapter-img" />
+        ? <img src={`${base}/assets/chapters/${chapterImg}`} alt="PEACEMINUSONE: Beyond the Stage, 2015" class="chapter-img" />
         : <div class="chapter-img chapter-placeholder" role="img" aria-label="2015 전시 이미지 자리"></div>}
     </div>
     <div class="chapter-caption">
@@ -50,11 +52,11 @@ const cells = products.slice(0, 6);
     <div class="selected-grid">
       {cells.map((p) => (
         <div class="selected-cell">
-          <ArchiveCard product={p} href={`/archive/${p.id}`} />
+          <ArchiveCard product={p} href={`${base}/archive/${p.id}`} />
         </div>
       ))}
     </div>
-    <a href="/archive" class="outro-link">
+    <a href={`${base}/archive`} class="outro-link">
       <span class="t-meta">records</span>
       <span class="t-lg">browse the full archive →</span>
     </a>
