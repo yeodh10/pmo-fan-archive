@@ -333,7 +333,7 @@
     "year": 2022,
     "date": "2022-10-17",
     "category": "accessory",
-    "title": "PMO®➖BROOCH SET",
+    "title": "PMO®➖EARRING SET",
     "caption": "",
     "images": [
       "assets/archive/2022_accessory_brooch-set.jpg",
@@ -389,7 +389,7 @@
     "year": 2022,
     "date": "2022-10-17",
     "category": "accessory",
-    "title": "PMO®➖SOCKS #5 WHITE",
+    "title": "PMO®➖SOCKS #5 BLACK",
     "caption": "",
     "images": [
       "assets/archive/2022_accessory_socks-5-white.jpg",
@@ -1123,7 +1123,7 @@
     "id": "2022_accessory_r-keyring",
     "year": 2022,
     "category": "accessory",
-    "title": "R KEYRING",
+    "title": "PMO P KEYRING",
     "caption": "등록상표 기호의 오브제화",
     "images": [
       "assets/archive/2022_accessory_r-keyring.jpg"
@@ -2050,7 +2050,7 @@
     "year": 2021,
     "date": "2021-01-20",
     "category": "outer",
-    "title": "PMO®➖DENIM PADDED JACKET #1 BLACK",
+    "title": "PMO®➖DOUBLE-BREASTED BLAZER BLACK",
     "caption": "",
     "images": [
       "assets/archive/2021_outer_denim-padded-jacket-1-black.jpg",
@@ -2139,7 +2139,7 @@
     "year": 2020,
     "date": "2020-12-14",
     "category": "accessory",
-    "title": "PMO®➖SLIDER CLIP #1 MULTI",
+    "title": "PMO®➖HOLOGRAPHIC PVC POUCH (MULTI)",
     "caption": "",
     "images": [
       "assets/archive/2020_accessory_slider-clip-1-multi.jpg",
@@ -2546,7 +2546,7 @@
     "code": "CDSfqx1gCY5",
     "year": 2020,
     "date": "2020-07-31",
-    "category": "accessory",
+    "category": "shirts",
     "title": "PMO® X THE CONVENI",
     "caption": "",
     "images": [
@@ -3001,7 +3001,7 @@
     "year": 2020,
     "date": "2020-03-30",
     "category": "accessory",
-    "title": "PMO®➖SLIDER CLIP #1 BLACK",
+    "title": "PMO®➖CARD HOLDER #1 (BLACK)",
     "caption": "",
     "images": [
       "assets/archive/2020_accessory_slider-clip-1-black.jpg",
@@ -3068,7 +3068,7 @@
     "year": 2020,
     "date": "2020-02-22",
     "category": "accessory",
-    "title": "PMO®➖SLIDER CLIP #1 SILVER",
+    "title": "PMO®➖CARD POUCH (SILVER)",
     "caption": "",
     "images": [
       "assets/archive/2020_accessory_slider-clip-1-silver.jpg",
@@ -3200,7 +3200,7 @@
     "id": "2019_accessory_bandana-sleeveless-blue",
     "year": 2019,
     "date": "2019-10-01",
-    "category": "accessory",
+    "category": "shirts",
     "title": "PMO®➖BANDANA SLEEVELESS (BLUE)",
     "caption": "",
     "images": [
@@ -3214,7 +3214,7 @@
     "id": "2019_accessory_bandana-sleeveless-charcoal",
     "year": 2019,
     "date": "2019-10-01",
-    "category": "accessory",
+    "category": "shirts",
     "title": "PMO®➖BANDANA SLEEVELESS (CHARCOAL)",
     "caption": "",
     "images": [
@@ -3228,7 +3228,7 @@
     "id": "2019_accessory_bandana-sleeveless-pink",
     "year": 2019,
     "date": "2019-10-01",
-    "category": "accessory",
+    "category": "shirts",
     "title": "PMO®➖BANDANA SLEEVELESS (PINK)",
     "caption": "",
     "images": [
@@ -3523,7 +3523,7 @@
     "id": "2019_outer_windbreaker",
     "year": 2019,
     "date": "2019-05-17",
-    "category": "outer",
+    "category": "shirts",
     "title": "PMO®️➖WINDBREAKER",
     "caption": "",
     "images": [
@@ -3622,8 +3622,8 @@
     "code": "BwbGXWLFpAV",
     "year": 2019,
     "date": "2019-04-19",
-    "category": "accessory",
-    "title": "PMO® X FRAGMENT",
+    "category": "shirts",
+    "title": "PMO® X FRAGMENT HOODIE",
     "caption": "",
     "images": [
       "assets/archive/2019_accessory_x-fragment.jpg",
@@ -3728,7 +3728,7 @@
     "id": "2018_accessory_access-cards",
     "year": 2018,
     "category": "accessory",
-    "title": "ACCESS CARD SET",
+    "title": "PMO®➖HOLOGRAPHIC ACRYLIC KEYRING",
     "caption": "ARTIST / STAFF / ALL ACCESS / V.I.P",
     "images": [
       "assets/archive/2018_accessory_access-cards.jpg"
@@ -3833,18 +3833,6 @@
     ]
   },
   {
-    "id": "2017_accessory_lanyard",
-    "code": "BbflteUHaKi",
-    "year": 2017,
-    "date": "2017-11-14",
-    "category": "accessory",
-    "title": "PMO®➖LANYARD",
-    "caption": "",
-    "images": [
-      "assets/archive/2017_accessory_lanyard.jpg"
-    ]
-  },
-  {
     "id": "2017_shirts_hoodie-black-white",
     "year": 2017,
     "date": "2017-10-26",
@@ -3908,7 +3896,7 @@
     "year": 2017,
     "date": "2017-09-21",
     "category": "shirts",
-    "title": "PMO PEACE SYMBOL ALL-OVER T-SHIRT BLACK",
+    "title": "PMO PEACE SYMBOL ALL-OVER TANK TOP (BLACK)",
     "caption": "",
     "images": [
       "assets/archive/2017_shirts_peace-symbol-all-over-t-shirt-black.jpg"
@@ -4256,8 +4244,8 @@
   {
     "id": "2017_accessory_lip-pouch",
     "year": 2017,
-    "category": "accessory",
-    "title": "LIP POUCH",
+    "category": "cap",
+    "title": "PMO RED BALL CAP",
     "caption": "MOTTE 머치 — 입술 모양 레드 파우치",
     "images": [
       "assets/archive/2017_accessory_lip-pouch.jpg"
@@ -4463,7 +4451,7 @@
     "year": 2016,
     "date": "2016-10-12",
     "category": "shirts",
-    "title": "PMO REFORM HOODIE #2 (BLACK)",
+    "title": "PMO REFORM CREWNECK #2 (BLACK)",
     "caption": "",
     "images": [
       "assets/archive/2016_shirts_reform-hoodie-2-black.jpg"
@@ -4474,7 +4462,7 @@
     "year": 2016,
     "date": "2016-10-12",
     "category": "shirts",
-    "title": "PMO REFORM HOODIE #2 (GREY)",
+    "title": "PMO REFORM CREWNECK #2 (GREY)",
     "caption": "",
     "images": [
       "assets/archive/2016_shirts_reform-hoodie-2-grey.jpg"

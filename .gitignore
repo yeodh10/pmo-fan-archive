@@ -28,3 +28,5 @@ data/vision_workflow.js
 data/vision_input.json
 data/tee_workflow.js
 data/exh_workflow.js
+data/audit_workflow.js
+data/audit_products.json
