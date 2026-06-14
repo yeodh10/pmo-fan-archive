@@ -2217,7 +2217,7 @@
     "year": 2020,
     "date": "2020-11-11",
     "category": "shoes",
-    "title": "PMO® X NIKE AF1 PARANOISE",
+    "title": "PMO X NIKE AF1 PARA-NOISE 2.0",
     "caption": "",
     "images": [
       "assets/archive/2020_shoes_x-nike-af1-paranoise.jpg",
@@ -3158,16 +3158,6 @@
     ]
   },
   {
-    "id": "2020_shoes_nike-kwondo-1",
-    "year": 2020,
-    "category": "shoes",
-    "title": "PMO X NIKE KWONDO 1",
-    "caption": "두 번째 협업 풋웨어",
-    "images": [
-      "assets/archive/2020_shoes_nike-kwondo-1.jpg"
-    ]
-  },
-  {
     "id": "2019_cap_leather-bucket-hat",
     "year": 2019,
     "date": "2019-12-18",
@@ -3662,7 +3652,7 @@
     "id": "2019_shoes_nike-af1-paranoise",
     "year": 2019,
     "category": "shoes",
-    "title": "PMO X NIKE AF1 PARA-NOISE",
+    "title": "PMO X NIKE AF1 PARA-NOISE 1.0",
     "caption": "나이키 협업의 시작 — 칠해진 그림이 벗겨지는 신발",
     "images": [
       "assets/archive/2019_shoes_nike-af1-paranoise.jpg"
