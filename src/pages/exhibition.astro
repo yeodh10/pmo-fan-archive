@@ -3,35 +3,46 @@ import fs from 'node:fs';
 import Base from '../layouts/Base.astro';
 import exhibitions from '../../data/exhibitions.json';
 
-const entries = exhibitions.map((e) => ({
-  ...e,
-  hasImage: e.image ? fs.existsSync(new URL(`../../public/${e.image}`, import.meta.url)) : false,
-}));
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const events = exhibitions.map((e) => ({
+  ...e,
+  images: (e.images ?? []).filter((img) =>
+    fs.existsSync(new URL(`../../public/${img}`, import.meta.url))
+  ),
+}));
+const totalImages = events.reduce((s, e) => s + e.images.length, 0);
 ---
 
 <Base title="Exhibition">
   <div class="exh">
     <header class="exh-head">
-      <p class="t-meta">exhibition & pop-up</p>
+      <p class="t-meta">exhibition · pop-up · party</p>
       <h1 class="t-xl">전시 · 팝업</h1>
       <p class="t-serif-i exh-sub">옷을 팔기 전에, 장면을 먼저 만들었다.</p>
+      <p class="t-meta exh-count">{events.length} events · {totalImages} images</p>
     </header>
 
-    <div class="exh-list">
-      {entries.map((e) => (
-        <section class="exh-item">
-          <div class="exh-media">
-            {e.hasImage
-              ? <img src={`${base}/${e.image}`} alt={`${e.title} — ${e.location}`} loading="lazy" />
-              : <div class="exh-placeholder" role="img" aria-label={`${e.title} — 이미지 준비 중`}></div>}
+    <div class="exh-events">
+      {events.map((e) => (
+        <section class="event">
+          <div class="event-head">
+            <p class="t-meta event-meta">{e.year} · {e.kind}</p>
+            <h2 class="t-lg event-title">{e.title}</h2>
+            <p class="event-loc">{e.location}</p>
+            {e.note && <p class="event-note t-serif-i">{e.note}</p>}
+            <p class="t-meta event-n">{e.images.length} {e.images.length > 1 ? 'images' : 'image'}</p>
           </div>
-          <div class="exh-text">
-            <p class="t-meta exh-meta">{e.year} · {e.kind}</p>
-            <h2 class="t-lg exh-title">{e.title}</h2>
-            <p class="exh-loc">{e.location}</p>
-            {e.note && <p class="exh-note t-serif-i">{e.note}</p>}
-          </div>
+
+          {e.images.length > 0 && (
+            <div class:list={['event-gallery', { solo: e.images.length === 1 }]}>
+              {e.images.map((img, idx) => (
+                <figure class:list={['shot', { lead: idx === 0 && e.images.length > 2 }]}>
+                  <img src={`${base}/${img}`} alt={`${e.title} — ${e.location} (${idx + 1})`} loading="lazy" />
+                </figure>
+              ))}
+            </div>
+          )}
         </section>
       ))}
     </div>
@@ -45,106 +56,104 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 <style>
   .exh {
     padding: calc(var(--header-h) + var(--space-4)) var(--gutter) var(--space-5);
-    max-width: 1100px;
+    max-width: 1200px;
     margin-inline: auto;
   }
 
   .exh-head {
-    min-height: 32vh;
+    min-height: 30vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: var(--space-1);
     margin-bottom: var(--space-4);
   }
+  .exh-sub { color: var(--muted); font-size: var(--text-lg); }
+  .exh-count { color: var(--faint); margin-top: var(--space-1); }
 
-  .exh-sub {
-    color: var(--muted);
-    font-size: var(--text-lg);
-  }
-
-  .exh-list {
+  .exh-events {
     display: flex;
     flex-direction: column;
     gap: var(--space-5);
   }
 
-  /* 이미지/텍스트 2열, 교차 배치 */
-  .exh-item {
-    display: grid;
-    grid-template-columns: minmax(0, 7fr) minmax(0, 4fr);
-    gap: var(--space-3);
-    align-items: center;
-  }
-
-  .exh-item:nth-child(even) .exh-media { order: 2; }
-  .exh-item:nth-child(even) .exh-text { order: 1; }
-
-  .exh-media {
-    overflow: hidden;
-  }
-
-  .exh-media img {
-    width: 100%;
-    display: block;
-    object-fit: cover;
-  }
-
-  .exh-placeholder {
-    aspect-ratio: 4 / 3;
-    background: radial-gradient(ellipse 90% 70% at 50% 40%, #161614 0%, #0e0e0d 75%);
-    border: 1px solid var(--line);
-  }
-
-  .exh-text {
+  .event {
     display: flex;
     flex-direction: column;
-    gap: var(--space-1);
+    gap: var(--space-2);
   }
 
-  .exh-meta {
-    color: var(--muted);
+  .event-head {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    padding-bottom: var(--space-1);
+    border-bottom: 1px solid var(--line);
+  }
+  .event-meta { color: var(--muted); }
+  .event-title { font-weight: 500; letter-spacing: 0.01em; }
+  .event-loc { color: var(--accent); font-size: var(--text-sm); letter-spacing: 0.04em; }
+  .event-note { color: var(--muted); margin-top: 0.2rem; }
+  .event-n { color: var(--faint); margin-top: 0.3rem; }
+
+  /* 갤러리: 반응형 그리드, 첫 컷은 크게(2x2 span) */
+  .event-gallery {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+  }
+  .event-gallery.solo {
+    grid-template-columns: minmax(0, 720px);
   }
 
-  .exh-title {
-    font-weight: 500;
-    letter-spacing: 0.01em;
+  .shot {
+    margin: 0;
+    overflow: hidden;
+    background: #101010;
+    aspect-ratio: 1 / 1;
+  }
+  .shot.lead {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+  .event-gallery.solo .shot {
+    aspect-ratio: auto;
   }
 
-  .exh-loc {
-    color: var(--accent);
-    font-size: var(--text-sm);
-    letter-spacing: 0.04em;
+  .shot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.92);
+    transition: filter 0.4s ease, transform 0.6s var(--ease-out);
   }
-
-  .exh-note {
-    color: var(--muted);
-    margin-top: var(--space-1);
+  .event-gallery.solo .shot img {
+    height: auto;
+    object-fit: contain;
+  }
+  .shot:hover img {
+    filter: brightness(1);
+    transform: scale(1.03);
   }
 
   .exh-outro {
-    min-height: 30vh;
+    min-height: 28vh;
     display: flex;
     align-items: center;
     justify-content: center;
   }
-
   .exh-outro-link:hover { color: var(--fg); }
 
   :global(html.js) .exh-head > *,
-  :global(html.js) .exh-item {
+  :global(html.js) .event {
     opacity: 0;
     transform: translateY(28px);
   }
 
   @media (max-width: 760px) {
-    .exh-item,
-    .exh-item:nth-child(even) .exh-media,
-    .exh-item:nth-child(even) .exh-text {
-      grid-template-columns: 1fr;
-      order: initial;
-    }
-    .exh-item { gap: var(--space-2); }
+    .event-gallery { grid-template-columns: repeat(2, 1fr); }
+    .shot.lead { grid-column: span 2; grid-row: auto; }
   }
 </style>
 
@@ -155,18 +164,17 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 <script>
   import gsap from 'gsap';
   import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
   gsap.registerPlugin(ScrollTrigger);
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   if (reduced) {
-    gsap.set(['.exh-head > *', '.exh-item'], { opacity: 1, y: 0 });
+    gsap.set(['.exh-head > *', '.event'], { opacity: 1, y: 0 });
   } else {
     gsap.to('.exh-head > *', { opacity: 1, y: 0, duration: 1.0, stagger: 0.12, ease: 'power3.out', delay: 0.15 });
-    document.querySelectorAll('.exh-item').forEach((el) => {
+    document.querySelectorAll('.event').forEach((el) => {
       gsap.to(el, {
         opacity: 1, y: 0, duration: 0.9, ease: 'power3.out',
-        scrollTrigger: { trigger: el, start: 'top 82%' },
+        scrollTrigger: { trigger: el, start: 'top 85%' },
       });
     });
   }
