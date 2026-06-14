@@ -4137,10 +4137,22 @@
     "year": 2017,
     "date": "2017-04-28",
     "category": "shirts",
-    "title": "PMO TIE-DYE T-SHIRT",
+    "title": "PMO TIE-DYE T-SHIRT (RASTA)",
     "caption": "",
     "images": [
       "assets/archive/2017_shirts_tie-dye-t-shirt.jpg"
+    ]
+  },
+  {
+    "id": "2017_shirts_tie-dye-t-shirt-black",
+    "code": "BTac8ioBByh",
+    "year": 2017,
+    "date": "2017-04-28",
+    "category": "shirts",
+    "title": "PMO TIE-DYE T-SHIRT (BLACK)",
+    "caption": "",
+    "images": [
+      "assets/archive/2017_shirts_tie-dye-t-shirt-black.jpg"
     ]
   },
   {
