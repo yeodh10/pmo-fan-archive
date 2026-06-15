@@ -1398,7 +1398,7 @@
     "year": 2021,
     "date": "2021-10-01",
     "category": "accessory",
-    "title": "PMO®➖ DAISY BRACELET #3 GOLD",
+    "title": "PMO®➖DAISY BRACELET #3 GOLD",
     "caption": "",
     "images": [
       "assets/archive/2021_accessory_daisy-bracelet-3-gold.jpg",
@@ -1414,7 +1414,7 @@
     "year": 2021,
     "date": "2021-10-01",
     "category": "outer",
-    "title": "PMO®➖ QUILTED JACKET #3 MULTI",
+    "title": "PMO®➖QUILTED JACKET #3 MULTI",
     "caption": "",
     "images": [
       "assets/archive/2021_outer_quilted-jacket-3-multi.jpg",
@@ -1428,7 +1428,7 @@
     "year": 2021,
     "date": "2021-10-01",
     "category": "outer",
-    "title": "PMO®➖ QUILTED JACKET #4 CHECKER",
+    "title": "PMO®➖QUILTED JACKET #4 CHECKER",
     "caption": "",
     "images": [
       "assets/archive/2021_outer_quilted-jacket-4-checker.jpg",
@@ -3262,7 +3262,7 @@
     "year": 2019,
     "date": "2019-10-01",
     "category": "accessory",
-    "title": "PMO®➖SOCKS (NEON)",
+    "title": "PMO®➖SOCKS (NEON ORANGE/PINK)",
     "caption": "",
     "images": [
       "assets/archive/2019_accessory_socks-neon.jpg",
@@ -3442,7 +3442,7 @@
     "year": 2019,
     "date": "2019-05-24",
     "category": "outer",
-    "title": "PMO®➖ OVERSIZE HOOD ZIP UP (GREY)",
+    "title": "PMO®➖OVERSIZE HOOD ZIP UP (GREY)",
     "caption": "",
     "images": [
       "assets/archive/2019_outer_oversize-hood-zip-up-grey.jpg",
@@ -3456,7 +3456,7 @@
     "year": 2019,
     "date": "2019-05-24",
     "category": "outer",
-    "title": "PMO®➖ ROBE (BLACK)",
+    "title": "PMO®➖ROBE (BLACK)",
     "caption": "",
     "images": [
       "assets/archive/2019_outer_robe-black.jpg",
@@ -3470,7 +3470,7 @@
     "year": 2019,
     "date": "2019-05-24",
     "category": "shirts",
-    "title": "PMO®➖PULLOVER HOODIE (BLACK)",
+    "title": "PMO®➖ZIP-UP HOODIE (BLACK)",
     "caption": "",
     "images": [
       "assets/archive/2019_shirts_pullover-hoodie-black.jpg",
@@ -3483,7 +3483,7 @@
     "year": 2019,
     "date": "2019-05-24",
     "category": "shirts",
-    "title": "PMO®➖ PULLOVER HOODIE (BLACK)",
+    "title": "PMO®➖PULLOVER HOODIE (BLACK)",
     "caption": "",
     "images": [
       "assets/archive/2019_shirts_pullover-hoodie-black-2.jpg",
@@ -3497,7 +3497,7 @@
     "year": 2019,
     "date": "2019-05-17",
     "category": "accessory",
-    "title": "PMO®️➖PMO BANDANA SET",
+    "title": "PMO®➖PMO BANDANA SET",
     "caption": "",
     "images": [
       "assets/archive/2019_accessory_bandana-set.jpg",
@@ -3512,7 +3512,7 @@
     "year": 2019,
     "date": "2019-05-17",
     "category": "accessory",
-    "title": "PMO®️➖CARRIER STRAP (BLACK)",
+    "title": "PMO®➖CARRIER STRAP (BLACK)",
     "caption": "",
     "images": [
       "assets/archive/2019_accessory_carrier-strap-black.jpg",
@@ -3524,7 +3524,7 @@
     "year": 2019,
     "date": "2019-05-17",
     "category": "shirts",
-    "title": "PMO®️➖WINDBREAKER",
+    "title": "PMO®➖WINDBREAKER",
     "caption": "",
     "images": [
       "assets/archive/2019_outer_windbreaker.jpg",
@@ -3537,7 +3537,7 @@
     "year": 2019,
     "date": "2019-05-10",
     "category": "accessory",
-    "title": "PMO®️➖BULLDOG CLIP",
+    "title": "PMO®➖BULLDOG CLIP",
     "caption": "",
     "images": [
       "assets/archive/2019_accessory_bulldog-clip.jpg",
@@ -3561,7 +3561,7 @@
     "year": 2019,
     "date": "2019-05-10",
     "category": "accessory",
-    "title": "PMO®️➖SOCKS (NEON)",
+    "title": "PMO®➖SOCKS (NEON YELLOW/GREEN)",
     "caption": "",
     "images": [
       "assets/archive/2019_accessory_socks-neon-2.jpg",
@@ -4030,18 +4030,6 @@
     ]
   },
   {
-    "id": "2017_shoes_alchemist-x-hand-painted-slides",
-    "code": "BWjR_b9Bl9h",
-    "year": 2017,
-    "date": "2017-07-15",
-    "category": "shoes",
-    "title": "ALCHEMIST x PMO HAND-PAINTED SLIDES",
-    "caption": "",
-    "images": [
-      "assets/archive/2017_shoes_alchemist-x-hand-painted-slides.jpg"
-    ]
-  },
-  {
     "id": "2017_accessory_socks",
     "year": 2017,
     "date": "2017-06-23",
@@ -4182,17 +4170,6 @@
     "caption": "",
     "images": [
       "assets/archive/2017_accessory_logo-sticker.jpg"
-    ]
-  },
-  {
-    "id": "2017_accessory_mini-clip-2",
-    "year": 2017,
-    "date": "2017-02-17",
-    "category": "accessory",
-    "title": "PMO®🚬MINI CLIP",
-    "caption": "",
-    "images": [
-      "assets/archive/2017_accessory_mini-clip-2.jpg"
     ]
   },
   {
