@@ -4,16 +4,19 @@ import '../styles/global.css';
 
 interface Props {
   title?: string;
+  description?: string;
 }
 
-const { title } = Astro.props;
+const { title, description } = Astro.props;
 const pageTitle = title ? `${title} — PEACEMINUSONE archive` : 'PEACEMINUSONE — unofficial fan archive';
+const pageDesc = description ?? '지드래곤의 브랜드 PEACEMINUSONE 비공식 팬 아카이브 — 전시 · 제품 · minus one의 철학.';
 
 // 로고 폴백: public/assets/brand/logo.png가 있으면 이미지, 없으면 텍스트 로고
 const hasLogo = fs.existsSync(new URL('../../public/assets/brand/logo.png', import.meta.url));
 
 const base = import.meta.env.BASE_URL; // "/pmo-fan-archive/"
 const baseNoSlash = base.replace(/\/$/, '');
+const ogImage = new URL(`${baseNoSlash}/assets/brand/og.jpg`, Astro.site ?? 'https://yeodh10.github.io').href;
 
 const nav = [
   { href: `${baseNoSlash}/archive`, label: 'Archive' },
@@ -33,6 +36,15 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex, nofollow" />
     <title>{pageTitle}</title>
+    <meta name="description" content={pageDesc} />
+    <link rel="icon" type="image/png" href={`${baseNoSlash}/assets/brand/favicon.png`} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="PEACEMINUSONE archive" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDesc} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={ogImage} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
