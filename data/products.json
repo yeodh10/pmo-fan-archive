@@ -4544,5 +4544,27 @@
     "images": [
       "assets/archive/2017_accessory_red-leather-pouch.jpg"
     ]
+  },
+  {
+    "id": "2026_cap_x-verdy-i-believe-in-me",
+    "year": 2026,
+    "category": "cap",
+    "title": "PMO® X VERDY \"I BELIEVE IN ME\" CAP",
+    "caption": "Verdy 협업 · 서울 전시 한정",
+    "images": [
+      "assets/archive/2026_cap_x-verdy-i-believe-in-me.jpg",
+      "assets/archive/2026_cap_x-verdy-i-believe-in-me_2.jpg"
+    ]
+  },
+  {
+    "id": "2026_accessory_x-verdy-i-believe-in-me-clip",
+    "year": 2026,
+    "category": "accessory",
+    "title": "PMO® X VERDY \"I BELIEVE IN ME\" CLIP",
+    "caption": "Verdy 협업 클립",
+    "images": [
+      "assets/archive/2026_accessory_x-verdy-i-believe-in-me-clip.jpg",
+      "assets/archive/2026_accessory_x-verdy-i-believe-in-me-clip_2.jpg"
+    ]
   }
 ]
