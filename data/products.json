@@ -124,16 +124,6 @@
     ]
   },
   {
-    "id": "2025_accessory_daisy-pendant",
-    "year": 2025,
-    "category": "accessory",
-    "title": "DAISY PENDANT NECKLACE",
-    "caption": "2025 주얼리",
-    "images": [
-      "assets/archive/2025_accessory_daisy-pendant.jpg"
-    ]
-  },
-  {
     "id": "2024_accessory_x-monamhee-daihee-plush-keyring",
     "year": 2024,
     "date": "2024-12-11",
@@ -1116,16 +1106,6 @@
       "assets/archive/2022_outer_puffer-jacket-1-camo_2.jpg",
       "assets/archive/2022_outer_puffer-jacket-1-camo_3.jpg",
       "assets/archive/2022_outer_puffer-jacket-1-camo_4.jpg"
-    ]
-  },
-  {
-    "id": "2022_accessory_r-keyring",
-    "year": 2022,
-    "category": "accessory",
-    "title": "PMO P KEYRING",
-    "caption": "등록상표 기호의 오브제화",
-    "images": [
-      "assets/archive/2022_accessory_r-keyring.jpg"
     ]
   },
   {
@@ -3137,26 +3117,6 @@
     ]
   },
   {
-    "id": "2020_accessory_clip-keyrings",
-    "year": 2020,
-    "category": "accessory",
-    "title": "CLIP KEYRING",
-    "caption": "컬러 클립 시리즈",
-    "images": [
-      "assets/archive/2020_accessory_clip-keyrings.jpg"
-    ]
-  },
-  {
-    "id": "2020_cap_green-cap",
-    "year": 2020,
-    "category": "cap",
-    "title": "GREEN CAP",
-    "caption": "여름 컬러 드롭",
-    "images": [
-      "assets/archive/2020_cap_green-cap.jpg"
-    ]
-  },
-  {
     "id": "2019_cap_leather-bucket-hat",
     "year": 2019,
     "date": "2019-12-18",
@@ -3724,26 +3684,6 @@
     ]
   },
   {
-    "id": "2018_accessory_access-cards",
-    "year": 2018,
-    "category": "accessory",
-    "title": "PMO®➖HOLOGRAPHIC ACRYLIC KEYRING",
-    "caption": "ARTIST / STAFF / ALL ACCESS / V.I.P",
-    "images": [
-      "assets/archive/2018_accessory_access-cards.jpg"
-    ]
-  },
-  {
-    "id": "2018_cap_red-beanie",
-    "year": 2018,
-    "category": "cap",
-    "title": "RED BEANIE",
-    "caption": "공백기 직전의 드롭",
-    "images": [
-      "assets/archive/2018_cap_red-beanie.jpg"
-    ]
-  },
-  {
     "id": "2017_cap_logo-ball-cap-black",
     "code": "Bc6I4lgndjL",
     "year": 2017,
@@ -4206,36 +4146,6 @@
     ]
   },
   {
-    "id": "2017_accessory_lip-pouch",
-    "year": 2017,
-    "category": "cap",
-    "title": "PMO RED BALL CAP",
-    "caption": "MOTTE 머치 — 입술 모양 레드 파우치",
-    "images": [
-      "assets/archive/2017_accessory_lip-pouch.jpg"
-    ]
-  },
-  {
-    "id": "2017_cap_seoul-olympic",
-    "year": 2017,
-    "category": "cap",
-    "title": "SEOUL OLYMPIC CAP",
-    "caption": "8.18 — 생일 드롭의 레트로 캡",
-    "images": [
-      "assets/archive/2017_cap_seoul-olympic.jpg"
-    ]
-  },
-  {
-    "id": "2017_pants_red-track",
-    "year": 2017,
-    "category": "pants",
-    "title": "RED TRACK PANTS",
-    "caption": "2017 가을",
-    "images": [
-      "assets/archive/2017_pants_red-track.jpg"
-    ]
-  },
-  {
     "id": "2017_shirts_black-hoodie",
     "year": 2017,
     "category": "shirts",
@@ -4540,16 +4450,6 @@
     "caption": "",
     "images": [
       "assets/archive/2016_cap_cotton-cap.jpg"
-    ]
-  },
-  {
-    "id": "2016_shirts_logo-crewneck",
-    "year": 2016,
-    "category": "shirts",
-    "title": "LOGO CREWNECK",
-    "caption": "심볼 자수 스웻셔츠",
-    "images": [
-      "assets/archive/2016_shirts_logo-crewneck.jpg"
     ]
   }
 ]
