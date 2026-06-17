@@ -50,8 +50,8 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     display: flex;
     flex-direction: column;
     gap: var(--space-3);
-    /* 와이드 화면에서 이미지가 작아 보이지 않게 넓게 */
-    max-width: min(94vw, 1500px);
+    /* 한 화면에 사진 한 장이 온전히 들어오게 — 좌우 거터(64px×2) 포함, 실제 사진 폭 ≈800px */
+    max-width: min(92vw, 928px);
     margin-inline: auto;
   }
 
