@@ -98,9 +98,14 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   }
 
   .detail-frame img {
-    width: 100%;
     display: block;
-    object-fit: contain;
+    margin-inline: auto;
+    /* 폭은 컬럼(≈800px)까지, 높이는 화면 안에 — 세로 짧은 노트북(1366×768 등)에서도
+       어떤 비율의 사진이든 한 장이 한 화면에 들어오게. 비율 유지라 레터박스 없음. */
+    max-width: 100%;
+    max-height: 84vh;
+    width: auto;
+    height: auto;
     background: #101010;
   }
 
