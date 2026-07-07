@@ -18,12 +18,18 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 <Base>
   <!-- ── 히어로: 데이지 + 워드마크, 그 자체로 한 문장 ── -->
-  <section class="hero">
+  <section class="hero" data-variant="aloof">
     <h1 class="hero-statement">
       <img src={`${base}/assets/brand/daisy.webp`} alt="" class="hero-daisy" />
       <img src={`${base}/assets/brand/logo.png`} alt="PEACEMINUSONE" class="hero-wordmark" />
     </h1>
+    <p class="t-meta hero-meta">unofficial archive — est. 2016</p>
+    <p class="t-meta hero-scroll">scroll <span class="hero-scroll-arrow">↓</span></p>
     <span class="hero-edge" aria-hidden="true"></span>
+    <div class="hero-switch" aria-label="hero style — 비교용">
+      <button type="button" class="hero-opt" data-set="aloof">aloof</button>
+      <button type="button" class="hero-opt" data-set="classic">classic</button>
+    </div>
   </section>
 
   <!-- ── 풀스크린 이미지 챕터: 2015 전시 ────── -->
@@ -107,8 +113,57 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   }
 
   /* JS가 있을 때만 초기 숨김 — GSAP가 등장을 제어 */
+  .hero-meta {
+    color: var(--faint);
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: var(--space-3);
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .hero-scroll-arrow {
+    display: inline-block;
+    animation: drift 2.4s var(--ease-out) infinite;
+  }
+
+  @keyframes drift {
+    0%, 100% { transform: translateY(0); opacity: 1; }
+    50% { transform: translateY(5px); opacity: 0.4; }
+  }
+
+  .hero[data-variant='aloof'] .hero-meta,
+  .hero[data-variant='aloof'] .hero-scroll { display: none; }
+  .hero[data-variant='classic'] .hero-edge { display: none; }
+  .hero[data-variant='classic'] .hero-daisy { width: clamp(220px, 34vmin, 400px); }
+
+  .hero-switch {
+    position: absolute;
+    left: var(--gutter);
+    bottom: var(--space-3);
+    display: flex;
+    gap: 0.9rem;
+    opacity: 0.26;
+    transition: opacity 0.3s ease;
+  }
+  .hero-switch:hover { opacity: 1; }
+  .hero-opt {
+    background: none; border: none; cursor: pointer;
+    font-family: inherit; font-size: var(--text-xs);
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--muted); padding: 0;
+  }
+  .hero-opt:hover { color: var(--fg); }
+  .hero-opt:focus-visible { color: var(--fg); outline: 1px solid var(--line); outline-offset: 3px; }
+  .hero[data-variant='aloof'] .hero-opt[data-set='aloof'],
+  .hero[data-variant='classic'] .hero-opt[data-set='classic'] { color: var(--fg); }
+
   :global(html.js) .hero-daisy,
   :global(html.js) .hero-wordmark,
+  :global(html.js) .hero-meta,
+  :global(html.js) .hero-scroll,
   :global(html.js) .hero-edge {
     opacity: 0;
   }
@@ -201,6 +256,14 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 <script is:inline>
   document.documentElement.classList.add('js');
+  (function () {
+    var q = new URLSearchParams(location.search).get('hero');
+    var v = q || localStorage.getItem('pmo:hero') || 'aloof';
+    if (v !== 'classic') v = 'aloof';
+    var h = document.querySelector('.hero');
+    if (h) h.dataset.variant = v;
+    if (q) localStorage.setItem('pmo:hero', v);
+  })();
 </script>
 
 <script>
@@ -211,20 +274,28 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // 두 방향 토글 — 선택 저장 후 새로고침해 해당 변형으로 (모션 설정과 무관하게 항상)
+  document.querySelectorAll('.hero-opt').forEach((b) => {
+    b.addEventListener('click', () => {
+      localStorage.setItem('pmo:hero', b.dataset.set || 'aloof');
+      location.reload();
+    });
+  });
+
   if (reduced) {
     // 모션 최소화: 전부 즉시 표시
     gsap.set(
-      ['.hero-daisy', '.hero-wordmark', '.hero-edge', '.chapter-caption > *', '.selected-cell'],
+      ['.hero-daisy', '.hero-wordmark', '.hero-meta', '.hero-scroll', '.hero-edge', '.chapter-caption > *', '.selected-cell'],
       { opacity: 1, y: 0 }
     );
     gsap.set('.chapter-img', { filter: 'brightness(1)', scale: 1 });
   } else {
     // ── 히어로: 데이지가 천천히, 확신 있게 ──
-    const intro = gsap.timeline({ defaults: { ease: 'power2.out' } });
+    const intro = gsap.timeline({ defaults: { ease: 'power3.out' } });
     intro
-      .fromTo('.hero-daisy', { opacity: 0, scale: 1.06 }, { opacity: 1, scale: 1, duration: 1.5, ease: 'power3.out' }, 0.2)
-      .fromTo('.hero-wordmark', { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 1.1, ease: 'power3.out' }, '-=0.5')
-      .fromTo('.hero-edge', { opacity: 0 }, { opacity: 1, duration: 1.2 }, '-=0.3');
+      .fromTo('.hero-daisy', { opacity: 0, scale: 1.06 }, { opacity: 1, scale: 1, duration: 1.5 }, 0.2)
+      .fromTo('.hero-wordmark', { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 1.1 }, '-=0.5')
+      .fromTo('.hero-meta, .hero-scroll, .hero-edge', { opacity: 0 }, { opacity: 1, duration: 1.0 }, '-=0.4');
 
     // 데이지, 아주 느리게 숨쉼 — 정적이되 살아있게
     gsap.to('.hero-daisy', { scale: 1.02, duration: 13, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: 2 });
