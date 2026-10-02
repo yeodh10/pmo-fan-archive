@@ -103,6 +103,10 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     color: var(--muted);
   }
 
+  /* aloof: 호버 시 제목만 — 연도·장수는 감춘다 */
+  :global(html[data-mode='aloof']) .card-year,
+  :global(html[data-mode='aloof']) .card-count { display: none; }
+
   /* 터치 환경: 호버가 없으니 오버레이 항상 표시 */
   @media (hover: none) {
     .card-overlay {

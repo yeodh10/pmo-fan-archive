@@ -125,6 +125,11 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     transform: translateY(28px);
   }
 
+  /* aloof: 떠오르지 않고 그냥 나타난다 */
+  :global(html[data-mode='aloof']) .grid-cell {
+    transform: none;
+  }
+
   .grid-cell[hidden] {
     display: none;
   }

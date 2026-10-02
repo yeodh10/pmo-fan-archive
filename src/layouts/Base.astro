@@ -51,6 +51,16 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
       href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Cormorant+Garamond:ital,wght@1,500&display=swap"
       rel="stylesheet"
     />
+    <script is:inline>
+      // 사이트 모드(aloof | classic) — 페인트 전에 html에 적용해 깜빡임 없이. ?mode= 로 강제 가능.
+      (function () {
+        var q = new URLSearchParams(location.search).get('mode');
+        var v = q || localStorage.getItem('pmo:mode') || localStorage.getItem('pmo:hero') || 'aloof';
+        if (v !== 'classic') v = 'aloof';
+        document.documentElement.dataset.mode = v;
+        if (q) localStorage.setItem('pmo:mode', v);
+      })();
+    </script>
   </head>
   <body>
     <header class="site-header">
@@ -74,8 +84,21 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 
     <footer class="site-footer">
       <p class="t-meta">unofficial fan archive — not affiliated with peaceminusone</p>
+      <div class="mode-switch" aria-label="site mode">
+        <button type="button" class="mode-opt" data-set-mode="aloof">aloof</button>
+        <button type="button" class="mode-opt" data-set-mode="classic">classic</button>
+      </div>
       <p class="t-meta footer-year">personal study / portfolio only</p>
     </footer>
+    <script is:inline>
+      // 모드 토글 — 히어로·푸터 어디의 버튼이든 같은 키에 저장하고 새로고침
+      document.querySelectorAll('[data-set-mode]').forEach(function (b) {
+        b.addEventListener('click', function () {
+          localStorage.setItem('pmo:mode', b.getAttribute('data-set-mode') === 'classic' ? 'classic' : 'aloof');
+          location.reload();
+        });
+      });
+    </script>
   </body>
 </html>
 
@@ -154,6 +177,25 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
   .footer-year {
     color: var(--faint);
   }
+
+  /* 모드 토글(푸터) — 결정용, 존재감 낮게 */
+  .mode-switch {
+    display: flex;
+    gap: 0.9rem;
+    opacity: 0.45;
+    transition: opacity 0.3s ease;
+  }
+  .mode-switch:hover { opacity: 1; }
+  .mode-opt {
+    background: none; border: none; cursor: pointer;
+    font-family: inherit; font-size: var(--text-xs);
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--muted); padding: 0;
+  }
+  .mode-opt:hover { color: var(--fg); }
+  .mode-opt:focus-visible { color: var(--fg); outline: 1px solid var(--line); outline-offset: 3px; }
+  :global(html[data-mode='aloof']) .mode-opt[data-set-mode='aloof'],
+  :global(html[data-mode='classic']) .mode-opt[data-set-mode='classic'] { color: var(--fg); }
 
   /* 모바일: 로고/내비 2단 헤더 */
   @media (max-width: 600px) {

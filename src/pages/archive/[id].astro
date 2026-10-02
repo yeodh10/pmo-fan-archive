@@ -87,6 +87,8 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     color: var(--faint);
   }
 
+  :global(html[data-mode='aloof']) .detail-count { display: none; }
+
   .detail-gallery {
     display: flex;
     flex-direction: column;
@@ -128,6 +130,12 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   :global(html.js) .detail-frame {
     opacity: 0;
     transform: translateY(20px);
+  }
+
+  /* aloof: 떠오르지 않고 그냥 나타난다 */
+  :global(html[data-mode='aloof']) .detail-head > *,
+  :global(html[data-mode='aloof']) .detail-frame {
+    transform: none;
   }
 </style>
 
