@@ -44,6 +44,7 @@
 - **2023** — Helinox 캠핑 기어 협업(레드), Guardians of Daisy. 드롭 빈도 급감.
 - **2024** — 프레데릭 말 Musc Ravageur 데이지 에디션(4월), 퍼렐 JOOPITER 경매 《NOTHING BUT A 'G' THANG: The Art & Archive of G-DRAGON》(9월), 런칭 8주년 액자 게시물(9.30).
 - **2025–26** — 다시 나이키 어패럴 컬렉션 (PMO × NIKE: 앤섬 재킷, 클럽 푸퍼, 엘 치노 팬츠, 크라이오샷 CTR 360 등). 현재 공식몰 운영.
+- **2026.9–11** — 맥도날드 협업 굿즈(9.28, 빈티지 캡·숄더백·핀세트), 런칭 10주년(10.1), 프레데릭 말 Musc Ravageur 한정 보틀(10월), WILDSIDE YOHJI YAMAMOTO 협업 13종(10.23, 가죽 블루종·울 코트·세일러 셔츠 등), Helinox 블랙 라인 7종(11.11).
 
 ## 브랜드 문법 (사이트 디자인에 번역된 것들)
 
