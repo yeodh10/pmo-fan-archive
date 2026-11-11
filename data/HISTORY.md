@@ -44,6 +44,7 @@
 - **2023** — Helinox 캠핑 기어 협업(레드), Guardians of Daisy. 드롭 빈도 급감.
 - **2024** — 프레데릭 말 Musc Ravageur 데이지 에디션(4월), 퍼렐 JOOPITER 경매 《NOTHING BUT A 'G' THANG: The Art & Archive of G-DRAGON》(9월), 런칭 8주년 액자 게시물(9.30).
 - **2025–26** — 다시 나이키 어패럴 컬렉션 (PMO × NIKE: 앤섬 재킷, 클럽 푸퍼, 엘 치노 팬츠, 크라이오샷 CTR 360 등). 현재 공식몰 운영.
+- **2025.12** — Jacob & Co. × PEACEMINUSONE 데이지 귀걸이 (실버 / 화이트골드·옐로다이아 2에디션).
 - **2025.11** — 2025 MAMA AWARDS MD ("PEACEMAMAONE": 캡 2종, 집업, 티셔츠).
 - **2026.6** — 나이키 × 대한축구협회 'Tigers of Asia' 월드컵 컬렉션(크라이오샷 CTR 360, 앤섬 재킷, 아카데미 프로 저지 등).
 - **2026.7–8** — 디즈니·픽사 토이스토리 협업 'THE FIRST FAN' (피규어·플러시·키링·티셔츠·캡·토트 등, 성수/도쿄/싱가포르 팝업).
